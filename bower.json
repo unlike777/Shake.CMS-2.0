@@ -1,0 +1,17 @@
+{
+  "name": "shake-cms2",
+  "description": "###Admin dashboard kit base on laravel 5.4",
+  "main": "",
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
