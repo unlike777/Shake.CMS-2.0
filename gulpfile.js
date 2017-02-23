@@ -19,25 +19,25 @@ gulp.task('fonts', function() {
 
 gulp.task('vendors:js', function() {
     return gulp.src(mainBowerFiles('**/*.js'), { base: 'resources/assets/admin/bower_components' })
-        .pipe(sourcemaps.init())
+        // .pipe(sourcemaps.init())
         .pipe(uglify())
         .pipe(concat('js.js'))
-        .pipe(sourcemaps.write())
+        // .pipe(sourcemaps.write())
         .pipe(gulp.dest('public/admin/vendors'));
 });
 
 gulp.task('vendors:css', function() {
     return gulp.src(mainBowerFiles('**/*.{css,less}'), { base: 'resources/assets/admin/bower_components' })
         .pipe(less())
-        .pipe(sourcemaps.init())
+        // .pipe(sourcemaps.init())
         .pipe(minifyCSS())
         .pipe(concat('style.css'))
-        .pipe(sourcemaps.write())
+        // .pipe(sourcemaps.write())
         .pipe(gulp.dest('public/admin/vendors'));
 });
 
 gulp.task('js', function() {
-    return gulp.src('resources/assets/admin/js/*.js')
+    return gulp.src('resources/assets/admin/js/**/*.js')
         .pipe(sourcemaps.init())
         .pipe(babel({
             presets: ['es2015']
@@ -49,7 +49,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('css', function() {
-    return gulp.src('resources/assets/admin/css/*.less')
+    return gulp.src(['resources/assets/admin/css/sb/*.less', 'resources/assets/admin/css/**/*.less'])
         .pipe(less())
         .pipe(sourcemaps.init())
         .pipe(minifyCSS())
@@ -60,5 +60,5 @@ gulp.task('css', function() {
 
 gulp.task('default', ['fonts', 'vendors:js', 'vendors:css', 'js', 'css']);
 
-gulp.watch('resources/assets/admin/css/*.less', ['css']);
-gulp.watch('resources/assets/admin/js/*.js', ['js']);
+gulp.watch('resources/assets/admin/css/**/*.less', ['css']);
+gulp.watch('resources/assets/admin/js/**/*.js', ['js']);
