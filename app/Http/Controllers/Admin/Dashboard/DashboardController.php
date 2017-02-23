@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Console;
+namespace App\Http\Controllers\Admin\Dashboard;
 
 use App\Http\Controllers\Controller;
 
-class ConsoleController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,6 +18,6 @@ class ConsoleController extends Controller
     
     public function def()
     {
-        return view('admin.console.default');
+        return view('admin.dashboard.default');
     }
 }

@@ -11,14 +11,6 @@
 |
 */
 
-
-Route::group(['prefix' => 'admin'], function() {
-    
-    Route::any('/', 'Admin\Console\ConsoleController@def')->name('admin');
-    
-});
-
-
 Route::get('/', function () {
     return view('welcome');
 });

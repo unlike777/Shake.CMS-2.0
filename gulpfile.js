@@ -21,7 +21,7 @@ gulp.task('vendors:js', function() {
     return gulp.src(mainBowerFiles('**/*.js'), { base: 'resources/assets/admin/bower_components' })
         // .pipe(sourcemaps.init())
         .pipe(uglify())
-        .pipe(concat('js.js'))
+        .pipe(concat('vendors.js'))
         // .pipe(sourcemaps.write())
         .pipe(gulp.dest('public/admin/vendors'));
 });
@@ -31,7 +31,7 @@ gulp.task('vendors:css', function() {
         .pipe(less())
         // .pipe(sourcemaps.init())
         .pipe(minifyCSS())
-        .pipe(concat('style.css'))
+        .pipe(concat('vendors.css'))
         // .pipe(sourcemaps.write())
         .pipe(gulp.dest('public/admin/vendors'));
 });

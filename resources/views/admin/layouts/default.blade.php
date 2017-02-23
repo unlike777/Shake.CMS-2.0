@@ -9,12 +9,12 @@
     
     <title>Shake.CMS</title>
 
-    <link rel="SHORTCUT ICON" href="/cms/favicon.ico">
+    <link rel="SHORTCUT ICON" href="/admin/favicon.ico">
 
-    <link type="text/css" rel="stylesheet" href="{{ uncache('admin/vendors/style.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ uncache('admin/vendors/vendors.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ uncache('admin/app.css') }}">
 
-    <script type="text/javascript" src="{{ uncache('admin/vendors/js.js') }}"></script>
+    <script type="text/javascript" src="{{ uncache('admin/vendors/vendors.js') }}"></script>
     <script type="text/javascript" src="{{ uncache('admin/app.js') }}"></script>
 
 </head>
@@ -38,9 +38,7 @@
 
 <div id="wrapper">
 
-    <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -50,103 +48,17 @@
             </button>
 
             <a class="navbar-brand" href="https://github.com/unlike777/Shake.CMS-2.0" target="_blank">Shake.CMS 2.0</a>
+        </div>
 
+        <div class="collapse navbar-collapse navbar-left">
             <ul class="nav navbar-nav">
                 <li>
                     <a href="/"><!--{Site_name} &mdash;--> перейти на сайт</a>
                 </li>
             </ul>
         </div>
-        <!-- Top Menu Items -->
-        
         
         <ul class="nav navbar-right top-nav">
-            
-            
-            {{--<li class="dropdown">--}}
-                {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>--}}
-                {{--<ul class="dropdown-menu message-dropdown">--}}
-                    {{--<li class="message-preview">--}}
-                        {{--<a href="#">--}}
-                            {{--<div class="media">--}}
-                                    {{--<span class="pull-left">--}}
-                                        {{--<img class="media-object" src="http://placehold.it/50x50" alt="">--}}
-                                    {{--</span>--}}
-                                {{--<div class="media-body">--}}
-                                    {{--<h5 class="media-heading">--}}
-                                        {{--<strong>John Smith</strong>--}}
-                                    {{--</h5>--}}
-                                    {{--<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>--}}
-                                    {{--<p>Lorem ipsum dolor sit amet, consectetur...</p>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li class="message-preview">--}}
-                        {{--<a href="#">--}}
-                            {{--<div class="media">--}}
-                                    {{--<span class="pull-left">--}}
-                                        {{--<img class="media-object" src="http://placehold.it/50x50" alt="">--}}
-                                    {{--</span>--}}
-                                {{--<div class="media-body">--}}
-                                    {{--<h5 class="media-heading">--}}
-                                        {{--<strong>John Smith</strong>--}}
-                                    {{--</h5>--}}
-                                    {{--<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>--}}
-                                    {{--<p>Lorem ipsum dolor sit amet, consectetur...</p>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li class="message-preview">--}}
-                        {{--<a href="#">--}}
-                            {{--<div class="media">--}}
-                                    {{--<span class="pull-left">--}}
-                                        {{--<img class="media-object" src="http://placehold.it/50x50" alt="">--}}
-                                    {{--</span>--}}
-                                {{--<div class="media-body">--}}
-                                    {{--<h5 class="media-heading">--}}
-                                        {{--<strong>John Smith</strong>--}}
-                                    {{--</h5>--}}
-                                    {{--<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>--}}
-                                    {{--<p>Lorem ipsum dolor sit amet, consectetur...</p>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li class="message-footer">--}}
-                        {{--<a href="#">Read All New Messages</a>--}}
-                    {{--</li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
-            {{--<li class="dropdown">--}}
-                {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>--}}
-                {{--<ul class="dropdown-menu alert-dropdown">--}}
-                    {{--<li>--}}
-                        {{--<a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>--}}
-                    {{--</li>--}}
-                    {{--<li class="divider"></li>--}}
-                    {{--<li>--}}
-                        {{--<a href="#">View All</a>--}}
-                    {{--</li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
-            
             
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
@@ -172,39 +84,35 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li>
-                    <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    <a href="{{ route('admin') }}"><i class="fa fa-fw fa-dashboard"></i> {{ config('admin.def_page_name') }}</a>
                 </li>
+                
+                <li class="nav-divider"></li>
+                
+                <li class="nav-header nav-header1">
+                    Структура
+                </li>
+                
                 <li>
-                    <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                    <a href=""><i class="fa fa-fw fa-file"></i> Страницы</a>
                 </li>
+
+                <li class="nav-divider"></li>
+                
+                <li class="nav-header nav-header2">
+                    Системные
+                </li>
+                
                 <li>
-                    <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
+                    <a href=""><i class="fa fa-fw fa-users"></i> Пользователи</a>
                 </li>
+
                 <li>
-                    <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
+                    <a href=""><i class="fa fa-fw fa-cogs"></i> Настройки</a>
                 </li>
+
                 <li>
-                    <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
-                </li>
-                <li>
-                    <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
-                </li>
-                <li>
-                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                    <ul id="demo" class="collapse">
-                        <li>
-                            <a href="#">Dropdown Item</a>
-                        </li>
-                        <li>
-                            <a href="#">Dropdown Item</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="active">
-                    <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-                </li>
-                <li>
-                    <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+                    <a href="{{ route('admin.info') }}"><i class="fa fa-fw fa-info-circle"></i> Инфо о сервере</a>
                 </li>
             </ul>
         </div>
