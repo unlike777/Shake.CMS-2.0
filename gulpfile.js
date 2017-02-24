@@ -14,16 +14,16 @@ var flatten = require('gulp-flatten');
 gulp.task('fonts', function() {
     return gulp.src('resources/assets/admin/bower_components/*/fonts/*.{eot,svg,ttf,woff,woff2}')
         .pipe(flatten())
-        .pipe(gulp.dest('public/admin/fonts'));
+        .pipe(gulp.dest('public/assets/admin/fonts'));
 });
 
 gulp.task('vendors:js', function() {
     return gulp.src(mainBowerFiles('**/*.js'), { base: 'resources/assets/admin/bower_components' })
         // .pipe(sourcemaps.init())
         .pipe(uglify())
-        .pipe(concat('vendors.js'))
+        .pipe(concat('vendor.js'))
         // .pipe(sourcemaps.write())
-        .pipe(gulp.dest('public/admin/vendors'));
+        .pipe(gulp.dest('public/assets/admin/vendor'));
 });
 
 gulp.task('vendors:css', function() {
@@ -31,9 +31,9 @@ gulp.task('vendors:css', function() {
         .pipe(less())
         // .pipe(sourcemaps.init())
         .pipe(minifyCSS())
-        .pipe(concat('vendors.css'))
+        .pipe(concat('vendor.css'))
         // .pipe(sourcemaps.write())
-        .pipe(gulp.dest('public/admin/vendors'));
+        .pipe(gulp.dest('public/assets/admin/vendor'));
 });
 
 gulp.task('js', function() {
@@ -45,7 +45,7 @@ gulp.task('js', function() {
         .pipe(uglify())
         .pipe(concat('app.js'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('public/admin'));
+        .pipe(gulp.dest('public/assets/admin'));
 });
 
 gulp.task('css', function() {
@@ -55,7 +55,7 @@ gulp.task('css', function() {
         .pipe(minifyCSS())
         .pipe(concat('app.css'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('public/admin'));
+        .pipe(gulp.dest('public/assets/admin'));
 });
 
 gulp.task('default', ['fonts', 'vendors:js', 'vendors:css', 'js', 'css']);

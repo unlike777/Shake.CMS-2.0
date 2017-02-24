@@ -11,11 +11,11 @@
 
     <link rel="SHORTCUT ICON" href="/admin/favicon.ico">
 
-    <link type="text/css" rel="stylesheet" href="{{ uncache('admin/vendors/vendors.css') }}">
-    <link type="text/css" rel="stylesheet" href="{{ uncache('admin/app.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ uncache('assets/admin/vendor/vendor.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ uncache('assets/admin/app.css') }}">
 
-    <script type="text/javascript" src="{{ uncache('admin/vendors/vendors.js') }}"></script>
-    <script type="text/javascript" src="{{ uncache('admin/app.js') }}"></script>
+    <script type="text/javascript" src="{{ uncache('assets/admin/vendor/vendor.js') }}"></script>
+    <script type="text/javascript" src="{{ uncache('assets/admin/app.js') }}"></script>
 
 </head>
 
