@@ -17,8 +17,9 @@ class UsersSeeder extends Seeder
         DB::table('users')->truncate();
     
         User::create(array(
+            'name' => 'Admin',
             'email' => 'test@test.ru',
-            'password' => 'admins',
+            'password' => Hash::make('admins'),
             'group' => 'admin',
         ));
     }

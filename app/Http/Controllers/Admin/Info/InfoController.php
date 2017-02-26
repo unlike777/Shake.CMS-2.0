@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Info;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminController;
 
-class InfoController extends Controller
+class InfoController extends AdminController
 {
     /**
      * Create a new controller instance.

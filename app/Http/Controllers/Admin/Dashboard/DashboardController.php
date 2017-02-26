@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminController;
 
-class DashboardController extends Controller
+class DashboardController extends AdminController
 {
     /**
      * Create a new controller instance.
