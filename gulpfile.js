@@ -10,6 +10,7 @@ var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 var flatten = require('gulp-flatten');
+var debug = require('gulp-debug');
 
 gulp.task('fonts', function() {
     return gulp.src('resources/assets/admin/bower_components/*/fonts/*.{eot,svg,ttf,woff,woff2}')
@@ -58,7 +59,11 @@ gulp.task('css', function() {
         .pipe(gulp.dest('public/assets/admin'));
 });
 
-gulp.task('default', ['fonts', 'vendors:js', 'vendors:css', 'js', 'css']);
+gulp.task('watch', function() {
+    gulp.watch('resources/assets/admin/css/**/*.less', ['css']);
+    gulp.watch('resources/assets/admin/js/**/*.js', ['js']);
+});
 
-gulp.watch('resources/assets/admin/css/**/*.less', ['css']);
-gulp.watch('resources/assets/admin/js/**/*.js', ['js']);
+gulp.task('default', ['fonts', 'vendors:js', 'vendors:css', 'js', 'css', 'watch']);
+
+

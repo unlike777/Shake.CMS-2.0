@@ -1,0 +1,23 @@
+{
+  "name": "NestableBower",
+  "homepage": "https://github.com/unlike777/Nestable",
+  "authors": [
+    "unlike777 <unlike777@gmail.com>"
+  ],
+  "description": "Nestable with normal bower.json",
+  "main": "jquery.nestable.js",
+  "keywords": [
+    "Nesatble",
+    "Jquery",
+    "Bower",
+    "Normal-bower.json"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

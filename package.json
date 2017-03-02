@@ -15,6 +15,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.1",
     "gulp-csso": "^2.0.0",
+    "gulp-debug": "^3.1.0",
     "gulp-flatten": "^0.3.1",
     "gulp-less": "^3.3.0",
     "gulp-sourcemaps": "^2.4.1",
