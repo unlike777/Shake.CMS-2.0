@@ -21,16 +21,30 @@
 
 <body>
 
-@if (Session::has('message'))
-    <div id="shake_message" class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="false">
-        <div class="modal-dialog modal-sm">
+@if ($errors)
+    <div id="shake_message" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="false">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="mySmallModalLabel">{{ Session::get('message')['title'] }}</h4>
+                    <h4 class="modal-title" style="font-weight: bold;">Ошибка!</h4>
                 </div>
 
-                <div class="modal-body">{{ Session::get('message')['text'] }}</div>
+                <div class="modal-body text-danger">
+                    @if($errors->count() > 1)
+                        <ul style="margin-bottom: 0;">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @else
+                        {{ $errors->first() }}
+                    @endif
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                </div>
             </div>
         </div>
     </div>
@@ -94,7 +108,7 @@
                 </li>
                 
                 <li>
-                    <a href=""><i class="fa fa-fw fa-file"></i> Страницы</a>
+                    <a href="{{ route('admin.pages.def') }}"><i class="fa fa-fw fa-file"></i> Страницы</a>
                 </li>
 
                 <li class="nav-divider"></li>

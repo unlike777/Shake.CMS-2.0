@@ -34,6 +34,15 @@ class Page extends ShakeModel
             'type' => 'bool',
             'title' => 'Домашняя?',
         ),
+        'template' => array(
+            'type' => 'select',
+            'title' => 'Шаблон страницы',
+            'values' => array(
+                'default' => 'Стандартный',
+                'home'    => 'Домашний',
+                'second'  => 'Второстепенный',
+            ),
+        ),
         'content' => array(
             'type' => 'ckeditor',
             'title' => 'Содержание',
@@ -45,15 +54,6 @@ class Page extends ShakeModel
         'file' => array(
             'type' => 'file',
             'title' => 'Файл',
-        ),
-        'template' => array(
-            'type' => 'select',
-            'title' => 'Шаблон страницы',
-            'values' => array(
-                'default' => 'Стандартный',
-                'home'    => 'Домашний',
-                'second'  => 'Второстепенный',
-            ),
         ),
     );
     
