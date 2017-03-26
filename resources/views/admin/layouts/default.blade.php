@@ -21,7 +21,7 @@
 
 <body>
 
-@if ($errors)
+@if ($errors->count())
     <div id="shake_message" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="false">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
