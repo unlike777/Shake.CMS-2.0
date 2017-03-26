@@ -34,47 +34,11 @@
 
                 <div class="dd" id="nestable3">
                     <ol class="dd-list">
-                        <li class="dd-item dd3-item" data-id="13">
-                            <div class="dd-handle dd3-handle">Drag</div>
-                            <div class="dd3-content">
-                                <i class="glyphicon glyphicon-eye-open eye_btn"></i>
-                                <a href="">Item 13</a>
-                                <div class="dd-right">
-                                    <a href="" class="glyphicon glyphicon-pencil"></a>
-                                    <a href="" class="glyphicon glyphicon-share" target="_blank"></a>
-                                    <a href="" class="glyphicon glyphicon-trash table__row_delete"></a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="dd-item dd3-item" data-id="14">
-                            <div class="dd-handle dd3-handle">Drag</div>
-                            <div class="dd3-content">
-                                <i class="glyphicon glyphicon-eye-open eye_btn"></i>
-                                <a href="">Item 14</a>
-                                <div class="dd-right">
-                                    <a href="" class="glyphicon glyphicon-pencil"></a>
-                                    <a href="" class="glyphicon glyphicon-share" target="_blank"></a>
-                                    <a href="" class="glyphicon glyphicon-trash table__row_delete"></a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="dd-item dd3-item" data-id="15">
-                            <div class="dd-handle dd3-handle">Drag</div><div class="dd3-content">Item 15</div>
-                            <ol class="dd-list">
-                                <li class="dd-item dd3-item" data-id="16">
-                                    <div class="dd-handle dd3-handle">Drag</div><div class="dd3-content">Item 16</div>
-                                </li>
-                                <li class="dd-item dd3-item" data-id="17">
-                                    <div class="dd-handle dd3-handle">Drag</div><div class="dd3-content">Item 17</div>
-                                </li>
-                                <li class="dd-item dd3-item" data-id="18">
-                                    <div class="dd-handle dd3-handle">Drag</div><div class="dd3-content">Item 18</div>
-                                </li>
-                            </ol>
-                        </li>
+                        @foreach($items as $item)
+                            @include('admin.pages._one_line', compact('item'))
+                        @endforeach
                     </ol>
                 </div>
-                
                 
             </div>
         </div>

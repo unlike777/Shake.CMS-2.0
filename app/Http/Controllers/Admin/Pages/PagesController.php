@@ -20,7 +20,8 @@ class PagesController extends AdminController
     
     public function def()
     {
-        return view('admin.pages.default');
+        $items = $this->model->wherePageId(0)->get();
+        return view('admin.pages.default', compact('items'));
     }
     
 }

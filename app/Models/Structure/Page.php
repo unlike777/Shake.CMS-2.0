@@ -128,12 +128,7 @@ class Page extends ShakeModel
     }
     
     public function pages() {
-        return $this->hasMany('Page');
-    }
-    
-    public function hasChilds() {
-        $count = $this->pages()->count();
-        return $count > 0 ? true : false;
+        return $this->hasMany(Page::class);
     }
     
 }
