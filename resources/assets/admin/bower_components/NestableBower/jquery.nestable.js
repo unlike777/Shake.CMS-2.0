@@ -47,7 +47,8 @@
             collapseBtnHTML : '<button data-action="collapse" type="button">Collapse</button>',
             group           : 0,
             maxDepth        : 5,
-            threshold       : 20
+            threshold       : 20,
+            onEndEvent      : function() {}
         };
 
     function Plugin(element, options)
@@ -75,17 +76,18 @@
             });
 
             list.el.on('click', 'button', function(e) {
-                if (list.dragEl || (!hasTouch && e.button !== 0)) {
-                    return;
-                }
-                var target = $(e.currentTarget),
-                    action = target.data('action'),
-                    item   = target.parent(list.options.itemNodeName);
-                if (action === 'collapse') {
-                    list.collapseItem(item);
-                }
-                if (action === 'expand') {
-                    list.expandItem(item);
+                if (list.dragEl || (!hasTouch && e.button)) {
+                    
+                } else {
+                    var target = $(e.currentTarget),
+                        action = target.data('action'),
+                        item   = target.parent(list.options.itemNodeName);
+                    if (action === 'collapse') {
+                        list.collapseItem(item);
+                    }
+                    if (action === 'expand') {
+                        list.expandItem(item);
+                    }
                 }
             });
 
@@ -297,6 +299,7 @@
             if (this.hasNewRoot) {
                 this.dragRootEl.trigger('change');
             }
+            this.options.onEndEvent.bind(el)();
             this.reset();
         },
 

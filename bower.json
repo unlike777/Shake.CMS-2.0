@@ -14,6 +14,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "font-awesome": "font-awsome#^4.7.0",
-    "NestableBower": "*"
+    "NestableBower": "*",
+    "jquery.cookie": "jquery-cookie#^1.4.1"
   }
 }

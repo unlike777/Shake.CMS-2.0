@@ -20,14 +20,13 @@
     "test",
     "tests"
   ],
-  "_release": "dcfed2acaa",
+  "_release": "a5506d38ce",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "dcfed2acaaaac083af9eea7e6d3e7fbdf4064879"
+    "commit": "a5506d38ce2c3ed430de61c0e087578f787ee312"
   },
   "_source": "https://github.com/unlike777/Nestable.git",
   "_target": "*",
-  "_originalSource": "NestableBower",
-  "_direct": true
+  "_originalSource": "NestableBower"
 }

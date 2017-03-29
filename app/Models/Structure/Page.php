@@ -88,6 +88,12 @@ class Page extends ShakeModel
             $pos = self::max('position') + 1;
             $obj->position = $pos;
         });
+        
+        static::deleting(function($obj) {
+            $obj->pages->map(function($item) {
+                $item->delete();
+            });
+        });
     }
     
     /**
@@ -129,6 +135,57 @@ class Page extends ShakeModel
     
     public function pages() {
         return $this->hasMany(Page::class);
+    }
+    
+    /**
+     * Информация о страницы для дерева в админке
+     * @return array
+     */
+    public function info() {
+        $info = [];
+        
+        if ($this->is_home) {
+            $info[] = 'домашняя';
+        }
+    
+        if (trim($this->link)) {
+            $info[] = 'ссылка: '.$this->link;
+        }
+        
+        return $info;
+    }
+    
+    
+    public function setParent($parent_id = 0, $before_id = false) {
+        $parent = static::find($parent_id);
+        if ( ($parent_id != 0) && !$parent) {return false;}
+        
+        $this->page_id = $parent_id;
+        
+        if ($before_id !== false) {
+            if ($before_id == 0) {
+                //вставляем в начало
+                $new_pos = 0;
+                static::where('id', '!=', $this->id)->where('page_id', '=', $parent_id)->increment('position');
+            } else {
+                //вставляем после конкретного элемента
+                $before_obj = static::find($before_id);
+                if ($before_obj) {
+                    $new_pos = $before_obj->position;
+                    static::where('id', '!=', $this->id)->wherePageId($parent_id)->where('position', '>', $new_pos)->increment('position');
+                    $new_pos++;
+                }
+            }
+        } else {
+            //вставляем в самый конец
+            $new_pos = static::where('id', '!=', $this->id)->where('page_id', '=', $parent_id)->max('position');
+            $new_pos++;
+        }
+        
+        $this->position = $new_pos;
+        $this->save();
+        
+        return true;
     }
     
 }

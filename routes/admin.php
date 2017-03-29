@@ -12,12 +12,13 @@ Route::group(['prefix' => 'admin'], function() {
     
     $modules = ['pages'];
     
-    foreach ($modules as $module)
-    {
+    foreach ($modules as $module) {
         Route::any($module, 'Admin\\'.ucfirst($module).'\\'.ucfirst($module).'Controller@def')->name('admin.'.$module.'.def');
         Route::any($module.'/edit/{id}', 'Admin\\'.ucfirst($module).'\\'.ucfirst($module).'Controller@edit')->name('admin.'.$module.'.edit');
         Route::any($module.'/create', 'Admin\\'.ucfirst($module).'\\'.ucfirst($module).'Controller@create')->name('admin.'.$module.'.create');
-        Route::any($module.'/delete', 'Admin\\'.ucfirst($module).'\\'.ucfirst($module).'Controller@delete')->name('admin.'.$module.'.delete');
+        Route::any($module.'/delete/{id?}', 'Admin\\'.ucfirst($module).'\\'.ucfirst($module).'Controller@delete')->name('admin.'.$module.'.delete');
         Route::any($module.'/active', 'Admin\\'.ucfirst($module).'\\'.ucfirst($module).'Controller@active')->name('admin.'.$module.'.active');
     }
+    
+    Route::any('pages/position', 'Admin\Pages\PagesController@position')->name('admin.pages.position');
 });

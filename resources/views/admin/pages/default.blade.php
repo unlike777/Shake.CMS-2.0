@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-lg-7">
 
-                <div class="dd" id="nestable3">
+                <div class="dd tree" id="nestable3">
                     <ol class="dd-list">
                         @foreach($items as $item)
                             @include('admin.pages._one_line', compact('item'))

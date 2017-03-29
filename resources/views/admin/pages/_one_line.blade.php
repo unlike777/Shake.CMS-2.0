@@ -8,11 +8,16 @@
             <i class="glyphicon glyphicon-eye-close eye_btn"></i>
         @endif
         
-        <a href="{{ route('admin.pages.edit', [$item->id]) }}">{{ $item->title }}</a>
+        @if ($info = $item->info())
+            <a href="{{ route('admin.pages.edit', [$item->id]) }}">{{ $item->title }}</a><span>, {{ implode(', ', $info) }}</span>
+        @else
+            <a href="{{ route('admin.pages.edit', [$item->id]) }}">{{ $item->title }}</a>
+        @endif
+            
         <div class="dd-right">
             <a href="{{ route('admin.pages.edit', [$item->id]) }}" class="glyphicon glyphicon-pencil"></a>
             <a href="{{ $item->url() }}" class="glyphicon glyphicon-share" target="_blank"></a>
-            <a href="{{ route('admin.pages.delete', [$item->id]) }}" class="glyphicon glyphicon-trash table__row_delete"></a>
+            <a href="{{ route('admin.pages.delete', [$item->id]) }}" class="glyphicon glyphicon-trash table__row_delete js_delete_confirm"></a>
         </div>
     </div>
 
