@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Settings;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Models\Utils\Setting;
-use App\Shake\Libs\Date;
+use Date;
 
 class SettingsController extends AdminController {
     
