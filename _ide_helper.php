@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.4.9 on 2017-02-26.
+ * Generated for Laravel 5.4.9 on 2017-04-04.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12217,6 +12217,96 @@ namespace {
     }
 
 
+    class Date extends \App\Shake\Facades\Date{
+        
+        /**
+         * работаем с текущей датой
+         *
+         * @return $this 
+         * @static 
+         */
+        public static function now(){
+            return \App\Shake\Libs\Date::now();
+        }
+        
+        /**
+         * парсим время
+         *
+         * @param bool $time
+         * @return $this 
+         * @static 
+         */
+        public static function parse($time = false){
+            return \App\Shake\Libs\Date::parse($time);
+        }
+        
+        /**
+         * Форматирует дату в заданном формате
+         * поддерживаемые аббревиатуры:
+         * dd, ddd - день недели
+         * mm, mmm, mmmm - месяц
+         * для получения первой буквы заглавной, используем DD, MMM
+         *
+         * @param string $format
+         * @return bool|string 
+         * @static 
+         */
+        public static function format($format = 'Y-m-d H:i:s'){
+            return \App\Shake\Libs\Date::format($format);
+        }
+        
+    }
+
+
+    class Resizer extends \App\Shake\Facades\Resizer{
+        
+        /**
+         * Устанавливаем изображение
+         *
+         * @param $img
+         * @return $this 
+         * @static 
+         */
+        public static function image($img){
+            return \App\Shake\Libs\Resizer::image($img);
+        }
+        
+        /**
+         * Возвращает полный путь до картинки
+         *
+         * @return string 
+         * @static 
+         */
+        public static function full_path(){
+            return \App\Shake\Libs\Resizer::full_path();
+        }
+        
+        /**
+         * Удаляет кеш текущей картинки
+         *
+         * @static 
+         */
+        public static function deleteCache(){
+            return \App\Shake\Libs\Resizer::deleteCache();
+        }
+        
+        /**
+         * Ресайзить картинку и кеширует ее
+         *
+         * @param int $width - ширина
+         * @param int $height - высота
+         * @param int $scale_type - режим работы; 0 - изображение заполняет всю область, 1 - изображение вписывается в заданную область
+         * @param int $bg - цвет фона
+         * @return string 
+         * @static 
+         */
+        public static function make($width = 0, $height = 0, $scale_type = 0, $bg = 0){
+            return \App\Shake\Libs\Resizer::make($width, $height, $scale_type, $bg);
+        }
+        
+    }
+
+
     class Form extends \Collective\Html\FormFacade{
         
         /**
@@ -13620,6 +13710,59 @@ namespace {
         public static function offsetUnset($key){
             //Method inherited from \DebugBar\DebugBar            
             return \Barryvdh\Debugbar\LaravelDebugbar::offsetUnset($key);
+        }
+        
+    }
+
+
+    class Image extends \Intervention\Image\Facades\Image{
+        
+        /**
+         * Overrides configuration settings
+         *
+         * @param array $config
+         * @static 
+         */
+        public static function configure($config = array()){
+            return \Intervention\Image\ImageManager::configure($config);
+        }
+        
+        /**
+         * Initiates an Image instance from different input types
+         *
+         * @param mixed $data
+         * @return \Intervention\Image\Image 
+         * @static 
+         */
+        public static function make($data){
+            return \Intervention\Image\ImageManager::make($data);
+        }
+        
+        /**
+         * Creates an empty image canvas
+         *
+         * @param integer $width
+         * @param integer $height
+         * @param mixed $background
+         * @return \Intervention\Image\Image 
+         * @static 
+         */
+        public static function canvas($width, $height, $background = null){
+            return \Intervention\Image\ImageManager::canvas($width, $height, $background);
+        }
+        
+        /**
+         * Create new cached image and run callback
+         * (requires additional package intervention/imagecache)
+         *
+         * @param \Closure $callback
+         * @param integer $lifetime
+         * @param boolean $returnObj
+         * @return \Image 
+         * @static 
+         */
+        public static function cache($callback, $lifetime = null, $returnObj = false){
+            return \Intervention\Image\ImageManager::cache($callback, $lifetime, $returnObj);
         }
         
     }

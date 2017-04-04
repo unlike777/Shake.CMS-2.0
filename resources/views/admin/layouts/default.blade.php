@@ -123,7 +123,7 @@
                 </li>
 
                 <li>
-                    <a href=""><i class="fa fa-fw fa-cogs"></i> Настройки</a>
+                    <a href="{{ route('admin.settings.def') }}"><i class="fa fa-fw fa-cogs"></i> Настройки</a>
                 </li>
 
                 <li>

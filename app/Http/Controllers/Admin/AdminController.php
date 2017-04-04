@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Shake\Libs\ShakeTable;
 
 class AdminController extends Controller {
     
@@ -16,6 +17,21 @@ class AdminController extends Controller {
      * @var $model \App\Models\ShakeModel;
      */
     protected $model;
+
+    /**
+     * @var $table \App\Shake\Libs\ShakeTable;
+     */
+    protected $table;
+    
+    public function __construct() {
+        $this->table = new ShakeTable();
+        $this->table->setModel($this->model);
+        $this->table->setModule('settings');
+    }
+
+    public function def() {
+        return view('admin.default.list', ['table' => $this->table]);
+    }
     
     public function create() {
         $model = $this->model;

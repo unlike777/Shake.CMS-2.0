@@ -161,6 +161,8 @@ class Page extends ShakeModel
         if ( ($parent_id != 0) && !$parent) {return false;}
         
         $this->page_id = $parent_id;
+
+        $new_pos = 0;
         
         if ($before_id !== false) {
             if ($before_id == 0) {

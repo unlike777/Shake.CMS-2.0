@@ -18,7 +18,7 @@ class PagesController extends AdminController {
     
     public function def() {
         $items = $this->model->wherePageId(0)->orderBy('position')->get();
-        return view('admin.pages.default', compact('items'));
+        return view('admin.pages.list', compact('items'));
     }
     
     public function position() {
