@@ -11,6 +11,7 @@ var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 var flatten = require('gulp-flatten');
 var debug = require('gulp-debug');
+var plumber = require('gulp-plumber');
 
 gulp.task('fonts', function() {
     return gulp.src('resources/assets/admin/bower_components/*/fonts/*.{eot,svg,ttf,woff,woff2}')
@@ -39,6 +40,7 @@ gulp.task('vendors:css', function() {
 
 gulp.task('js', function() {
     return gulp.src('resources/assets/admin/js/**/*.js')
+        .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(babel({
             presets: ['es2015']
@@ -51,6 +53,7 @@ gulp.task('js', function() {
 
 gulp.task('css', function() {
     return gulp.src(['resources/assets/admin/css/sb/*.less', 'resources/assets/admin/css/**/*.less'])
+        .pipe(plumber())
         .pipe(less())
         .pipe(sourcemaps.init())
         .pipe(minifyCSS())
