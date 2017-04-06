@@ -183,6 +183,7 @@ return [
          * ShakeProviders
          */
         App\Providers\ShakeServiceProvider::class,
+        App\Providers\ComposerServiceProvider::class,
         
         /**
          * additional

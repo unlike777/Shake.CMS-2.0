@@ -95,43 +95,11 @@
             </li>
             
         </ul>
+        
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav">
-                <li>
-                    <a href="{{ route('admin') }}"><i class="fa fa-fw fa-dashboard"></i> {{ config('admin.def_page_name') }}</a>
-                </li>
-                
-                <li class="nav-divider"></li>
-                
-                <li class="nav-header nav-header1">
-                    Структура
-                </li>
-                
-                <li>
-                    <a href="{{ route('admin.pages.def') }}"><i class="fa fa-fw fa-file"></i> Страницы</a>
-                </li>
-
-                <li class="nav-divider"></li>
-                
-                <li class="nav-header nav-header2">
-                    Системные
-                </li>
-                
-                <li>
-                    <a href=""><i class="fa fa-fw fa-users"></i> Пользователи</a>
-                </li>
-
-                <li>
-                    <a href="{{ route('admin.settings.def') }}"><i class="fa fa-fw fa-cogs"></i> Настройки</a>
-                </li>
-
-                <li>
-                    <a href="{{ route('admin.info') }}"><i class="fa fa-fw fa-info-circle"></i> Инфо о сервере</a>
-                </li>
-            </ul>
-        </div>
+        @include('admin.widgets.menu.main')
         <!-- /.navbar-collapse -->
+        
     </nav>
 
     <div id="page-wrapper">
