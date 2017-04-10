@@ -9,7 +9,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::any('login', 'Admin\Auth\AuthController@login')->name('admin.login');
     Route::any('logout', 'Admin\Auth\AuthController@logout')->name('admin.logout');
     
-    $modules = ['pages', 'settings'];
+    $modules = ['pages', 'users', 'settings'];
     
     foreach ($modules as $module) {
         Route::any($module, 'Admin\\'.ucfirst($module).'\\'.ucfirst($module).'Controller@def')->name('admin.'.$module.'.def');
