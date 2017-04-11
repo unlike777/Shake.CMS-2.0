@@ -37,12 +37,12 @@ class ModuleServiceProvider extends ServiceProvider
     
     public function addRoutes($module_name) {
         
-        $files = ['admin', 'web'];
+        $groups = ['admin', 'web'];
         
-        foreach ($files as $file_name) {
-            $path = module_path($module_name, 'routes/'.$file_name.'.php');
+        foreach ($groups as $group) {
+            $path = module_path($module_name, 'routes/'.$group.'.php');
             if (File::exists($path)) {
-                Route::middleware('admin')
+                Route::middleware($group)
                     ->namespace($this->namespace.'\\'.ucfirst($module_name).'\\Controllers')
                     ->group($path);
             }
