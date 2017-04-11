@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use View;
+use File;
 
 class ModuleServiceProvider extends ServiceProvider
 {
@@ -35,13 +36,18 @@ class ModuleServiceProvider extends ServiceProvider
     }
     
     public function addRoutes($module_name) {
-        Route::middleware('admin')
-            ->namespace($this->namespace.'\\'.ucfirst($module_name).'\\Controllers')
-            ->group(module_path($module_name, 'routes/admin.php'));
-
-        Route::middleware('web')
-            ->namespace($this->namespace.'\\'.ucfirst($module_name).'\\Controllers')
-            ->group(module_path($module_name, 'routes/web.php'));
+        
+        $files = ['admin', 'web'];
+        
+        foreach ($files as $file_name) {
+            $path = module_path($module_name, 'routes/'.$file_name.'.php');
+            if (File::exists($path)) {
+                Route::middleware('admin')
+                    ->namespace($this->namespace.'\\'.ucfirst($module_name).'\\Controllers')
+                    ->group($path);
+            }
+        }
+        
     }
     
     public function addViews($module_name) {
