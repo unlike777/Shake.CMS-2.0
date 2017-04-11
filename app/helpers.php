@@ -188,3 +188,16 @@ if(!function_exists('mb_ucfirst')) {
     }
 }
 
+if (! function_exists('module_path')) {
+    /**
+     * Get the path to the base of the install.
+     *
+     * @param  string  $path
+     * @return string
+     */
+    function module_path($module_name, $path = '')
+    {
+        return app('path') . DIRECTORY_SEPARATOR . 'Modules' . DIRECTORY_SEPARATOR . ucfirst($module_name) . ($path ? DIRECTORY_SEPARATOR.$path : $path);
+    }
+}
+

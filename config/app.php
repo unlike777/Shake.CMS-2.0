@@ -178,11 +178,12 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        
         /**
-         * ShakeProviders
+         * Shake Service Providers
          */
         App\Providers\ShakeServiceProvider::class,
+        App\Providers\ModuleServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         
         /**
