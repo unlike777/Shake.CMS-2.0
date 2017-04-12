@@ -9,7 +9,7 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Models\Auth\User;
+use App\Modules\Users\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 use Redirect;

@@ -24,7 +24,7 @@ class MenuComposer {
             }
         }
         
-        $view->with(compact('menu', 'route'));
+        $view->with(compact('menu'));
     }
     
     public function menu() {
@@ -32,21 +32,21 @@ class MenuComposer {
             [
                 'group' => '',
                 'items' => [
-                    ['name' => config('admin.def_page_name'), 'url' => '/admin', 'route' => 'Admin\Dashboard\DashboardController', 'glyph' => 'dashboard'],
+                    ['name' => config('admin.def_page_name'), 'url' => '/admin', 'route' => 'App\Modules\Dashboard\Controllers', 'glyph' => 'dashboard'],
                 ],
             ],
             [
                 'group' => 'Структура',
                 'items' => [
-                    ['name' => 'Страницы', 'url' => '/admin/pages', 'route' => 'Admin\Pages\PagesController', 'glyph' => 'file'],
+                    ['name' => 'Страницы', 'url' => '/admin/pages', 'route' => 'App\Modules\Pages\Controllers', 'glyph' => 'file'],
                 ],
             ],
             [
                 'group' => 'Системные',
                 'items' => [
-                    ['name' => 'Пользователи', 'url' => '/admin/users', 'route' => 'Admin\Users\UsersController', 'glyph' => 'users'],
-                    ['name' => 'Настройки', 'url' => '/admin/settings', 'route' => 'Admin\Settings\SettingsController', 'glyph' => 'cogs'],
-                    ['name' => 'Инфо о сервере', 'url' => '/admin/info', 'route' => 'Admin\Info\InfoController', 'glyph' => 'info-circle'],
+                    ['name' => 'Пользователи', 'url' => '/admin/users', 'route' => 'App\Modules\Users\Controllers', 'glyph' => 'users'],
+                    ['name' => 'Настройки', 'url' => '/admin/settings', 'route' => 'App\Modules\Settings\Controllers', 'glyph' => 'cogs'],
+                    ['name' => 'Инфо о сервере', 'url' => '/admin/info', 'route' => 'App\Modules\Info\Controllers', 'glyph' => 'info-circle'],
                 ],
             ],
         ];
