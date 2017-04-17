@@ -8,6 +8,8 @@ use Date;
 
 class SettingsController extends AdminController {
     
+    protected $module = 'settings';
+    
     /**
      * Create a new controller instance.
      *
@@ -16,6 +18,14 @@ class SettingsController extends AdminController {
     public function __construct(Setting $setting) {
         $this->model = $setting;
         parent::__construct();
+        
+        view()->share([
+            'module_name' => 'Настройки',
+            'decls' => [
+                'list' => 'настроек', 
+                'form' => 'настройки',
+            ],
+        ]);
     }
     
     public function def() {

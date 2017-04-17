@@ -7,6 +7,8 @@ use App\Modules\Users\Models\User;
 use Date;
 
 class UsersController extends AdminController {
+
+    protected $module = 'users';
     
     /**
      * Create a new controller instance.
@@ -16,6 +18,14 @@ class UsersController extends AdminController {
     public function __construct(User $user) {
         $this->model = $user;
         parent::__construct();
+
+        view()->share([
+            'module_name' => 'Пользователи',
+            'decls' => [
+                'list' => 'пользователей',
+                'form' => 'пользователя',
+            ],
+        ]);
     }
     
     public function def() {

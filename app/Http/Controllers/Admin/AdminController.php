@@ -22,11 +22,16 @@ class AdminController extends Controller {
      * @var $table \App\Shake\Libs\ShakeTable;
      */
     protected $table;
+
+    //название модуля на транслите
+    protected $module; 
     
     public function __construct() {
         $this->table = new ShakeTable();
         $this->table->setModel($this->model);
-        $this->table->setModule('settings');
+        $this->table->setModule($this->module);
+        
+        view()->share('module', $this->module);
     }
 
     public function def() {
@@ -43,7 +48,7 @@ class AdminController extends Controller {
             $model->fill($data);
             $model->save();
             
-            return redirect()->route('admin.pages.edit', [$model->id]);
+            return redirect()->route('admin.'.$this->module.'.edit', [$model->id])->with('message', 'Данные успешно сохранены!');
         }
         
         return view('admin.default.form', compact('model'));
@@ -59,7 +64,7 @@ class AdminController extends Controller {
             $model->fill($data);
             $model->save();
             
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Данные успешно сохранены!');;
         }
         
         return view('admin.default.form', compact('model'));
@@ -69,7 +74,7 @@ class AdminController extends Controller {
         if ($id) {
             $model = $this->model->findOrFail($id);
             $model->delete();
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Данные успешно удалены!');
         }
         
         $models = $this->model->whereIn('id', request('objects'))->get();

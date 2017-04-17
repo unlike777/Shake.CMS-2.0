@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Modules\Pages\Models\Page;
 
 class PagesController extends AdminController {
+
+    protected $module = 'pages';
     
     /**
      * Create a new controller instance.
@@ -14,6 +16,15 @@ class PagesController extends AdminController {
      */
     public function __construct(Page $page) {
         $this->model = $page;
+        
+        view()->share([
+            'module' => $this->module,
+            'module_name' => 'Структура',
+            'decls' => [
+                'list' => 'страниц',
+                'form' => 'страницы',
+            ],
+        ]);
     }
     
     public function def() {

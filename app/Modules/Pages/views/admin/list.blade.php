@@ -15,7 +15,7 @@
                         <i class="fa fa-dashboard"></i> <a href="{{ route('admin') }}">{{ config('admin.def_page_name') }}</a>
                     </li>
                     <li class="active">
-                        Дерево сайта
+                        Структура
                     </li>
                 </ol>
             </div>
