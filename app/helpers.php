@@ -201,3 +201,14 @@ if (! function_exists('module_path')) {
     }
 }
 
+/**
+ * Выкидывает стандартную ошибку
+ * @param string $message
+ * @param int $code
+ * @param null $previous
+ * @throws \App\Exceptions\ErrorMessage
+ */
+function error($message = '', $code = 0, $previous = null) {
+    throw new \App\Exceptions\ErrorMessage($message, $code, $previous);
+}
+

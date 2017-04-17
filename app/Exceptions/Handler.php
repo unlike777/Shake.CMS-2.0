@@ -5,6 +5,8 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\Debug\Exception\FlattenException;
 
 class Handler extends ExceptionHandler
 {
@@ -20,6 +22,7 @@ class Handler extends ExceptionHandler
         \Illuminate\Database\Eloquent\ModelNotFoundException::class,
         \Illuminate\Session\TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
+        ErrorMessage::class,
     ];
 
     /**
@@ -42,9 +45,34 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Exception $e)
     {
-        return parent::render($request, $exception);
+        if ($e instanceof ErrorMessage) {
+            if ($request->ajax()) {
+                return response()->json(['error' => ['text' => $e->getMessage()]]);
+            } else {
+                if (request()->header('referer')) {
+                    return redirect()->back()->withErrors($e->getMessage())->withInput();
+                }
+            }
+        }
+
+        if ($e instanceof ValidationException) {
+            if ($request->ajax()) {
+                return response()->json(['error' => ['text' => $e->validator->getMessageBag()->first()]]);
+            }
+        }
+
+        if (!($e instanceof ValidationException)) {
+            $exception = FlattenException::create($e);
+            $code = $exception->getStatusCode($exception);
+
+            if (!config('app.debug')) {
+                return response()->view('errors.default', ['exception' => $e, 'code' => $code], $code);
+            }
+        }
+        
+        return parent::render($request, $e);
     }
 
     /**
