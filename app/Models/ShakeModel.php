@@ -9,11 +9,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Schema;
 
 class ShakeModel extends \Eloquent {
     
     protected $fields = [];
     protected $guarded = []; //all access
+    
+    static protected $columns = null; //избегаем множественной генерации запросов для получения списка колонок модели
     
     /**
      * Вернет все поля формирующие форму редактирования
@@ -55,5 +58,17 @@ class ShakeModel extends \Eloquent {
     public function hasActive() {
         return in_array('active', $this->fillable) ? true : false;
     }
-    
+
+    /**
+     * При массовом присваивании отсеиваем все поля, которых не существует в таблице
+     * @return array
+     */
+    public function getFillable() {
+        if (is_null(static::$columns)) {
+            static::$columns = Schema::getColumnListing($this->getTable());
+        }
+        
+        return static::$columns;
+    }
+
 }

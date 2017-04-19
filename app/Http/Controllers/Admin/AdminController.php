@@ -47,6 +47,10 @@ class AdminController extends Controller {
             
             $model->fill($data);
             $model->save();
+
+            if (request('save_and_close')) {
+                return redirect()->route('admin.'.$this->module.'.def');
+            }
             
             return redirect()->route('admin.'.$this->module.'.edit', [$model->id])->with('message', 'Данные успешно сохранены!');
         }
@@ -56,7 +60,7 @@ class AdminController extends Controller {
     
     public function edit($id) {
         $model = $this->model->findOrFail($id);
-
+        
         if (!empty($_POST)) {
             $data = request()->all();
             $this->validateWith($model->validate($data));
@@ -64,7 +68,11 @@ class AdminController extends Controller {
             $model->fill($data);
             $model->save();
             
-            return redirect()->back()->with('message', 'Данные успешно сохранены!');;
+            if (request('save_and_close')) {
+                return redirect()->route('admin.'.$this->module.'.def');
+            }
+            
+            return redirect()->back()->with('message', 'Данные успешно сохранены!');
         }
         
         return view('admin.default.form', compact('model'));
