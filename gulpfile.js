@@ -21,10 +21,10 @@ gulp.task('fonts', function() {
 
 gulp.task('vendors:js', function() {
     return gulp.src(mainBowerFiles('**/*.js'), { base: 'resources/assets/admin/bower_components' })
-        .pipe(sourcemaps.init())
+        // .pipe(sourcemaps.init())
         .pipe(uglify())
         .pipe(concat('vendor.js'))
-        .pipe(sourcemaps.write())
+        // .pipe(sourcemaps.write())
         .pipe(gulp.dest('public/assets/admin/vendor'));
 });
 
