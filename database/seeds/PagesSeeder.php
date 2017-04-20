@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Models\Structure\Page;
+use App\Modules\Pages\Models\Page;
 
 use App\Models\Utils\SeoText;
 use App\Models\Utils\StickyFile;
