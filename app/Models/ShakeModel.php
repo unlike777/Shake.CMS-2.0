@@ -56,7 +56,7 @@ class ShakeModel extends \Eloquent {
      * @return bool
      */
     public function hasActive() {
-        return in_array('active', $this->fillable) ? true : false;
+        return in_array('active', $this->getFillable()) ? true : false;
     }
 
     /**
