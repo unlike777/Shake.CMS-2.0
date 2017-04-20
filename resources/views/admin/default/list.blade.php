@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-lg-12">
 
-                {!! $table->html() !!}
+                {!! $table_html !!}
                 
             </div>
         </div>

@@ -35,7 +35,8 @@ class AdminController extends Controller {
     }
 
     public function def() {
-        return view('admin.default.list', ['table' => $this->table]);
+        $table_html = $this->table->html();
+        return view('admin.default.list', compact('table_html'));
     }
     
     public function create() {

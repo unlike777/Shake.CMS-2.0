@@ -2,7 +2,6 @@
 
 namespace App\Shake\Libs;
 
-use Session;
 use Form;
 use Illuminate\Support\Facades\Input;
 use View;
@@ -110,8 +109,8 @@ class ShakeTable {
 			$param = 'asc';
 			$glyph = 'glyphicon glyphicon-align-left';
 			
-			if (Session::get($ses.'.sort_param') == $name) {
-				if (Session::get($ses.'.sort_trend') == 'asc') {
+			if (session($ses.'.sort_param') == $name) {
+				if (session($ses.'.sort_trend') == 'asc') {
 					$param = 'desc';
 					$glyph = 'glyphicon glyphicon-sort-by-attributes';
 				} else {
@@ -232,8 +231,7 @@ class ShakeTable {
 	 * @return $this|\Illuminate\View\View
 	 */
 	public function filter() {
-	    return '';
-//		return View::make('cms::widgets.filter.default')->with(array('fields' => $this->filter_fields));
+		return view('admin.widgets.filter.default')->with(['fields' => $this->filter_fields]);
 	}
 	
 	/**
@@ -300,20 +298,20 @@ class ShakeTable {
 							}
 						}
 						
-						Session::set($ses_name, $val);
+						session([$ses_name => $val]);
 					} else {
-						Session::remove($ses_name);
+					    session()->forget($ses_name);
 					}
 				}
 			}
 			
 			if (Input::has('filter.reset')) {
-				Session::remove($ses);
+			    session()->forget($ses);
 			}
 		} 
 		
-		if (Session::has($ses)) {
-			foreach (Session::get($ses) as $key => $val) {
+		if (session($ses)) {
+			foreach (session($ses) as $key => $val) {
 				$this->filter_fields['filter['.$key.']']['value'] = $val;
 				
 				$cur_field = $this->filter_fields['filter['.$key.']'];
@@ -339,16 +337,16 @@ class ShakeTable {
 		$ses = 'shake.sort.'.$this->module;
 		
 		if (Input::has('sort_param')) {
-			Session::set($ses.'.sort_param', Input::get('sort_param'));
-			Session::set($ses.'.sort_trend', Input::get('sort_trend'));
+			session([$ses.'.sort_param' => Input::get('sort_param')]);
+			session([$ses.'.sort_trend' => Input::get('sort_trend')]);
 		} else if (!empty($this->def_sort)) {
-			Session::set($ses.'.sort_param', $this->def_sort[0]);
-			Session::set($ses.'.sort_trend', $this->def_sort[1]);
+			session([$ses.'.sort_param' => $this->def_sort[0]]);
+			session([$ses.'.sort_trend' => $this->def_sort[1]]);
 		}
 		
-		if (Session::has($ses.'.sort_param')) {
-			$param = Session::get($ses.'.sort_param');
-			$trend = Session::get($ses.'.sort_trend');
+		if (session($ses.'.sort_param')) {
+			$param = session($ses.'.sort_param');
+			$trend = session($ses.'.sort_trend');
 			$this->data = $this->data->orderBy($param, $trend);
 		}
 		
@@ -369,12 +367,12 @@ class ShakeTable {
 			return '<h3>Не задана модель!</h3>';
 		}
 
-		
+        
 		$this->apply_filter();
 		$all_count = $this->data->count();
 		$this->apply_sort();
 		$this->apply_pager();
-		
+        
 		
 		$ret = $this->filter().$this->head().$this->body();
 		

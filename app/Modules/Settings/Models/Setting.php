@@ -10,6 +10,7 @@ class Setting extends ShakeModel
         'title' => array(
             'type' => 'text',
             'title' => 'Назначение',
+            'filter' => true,
         ),
         'alias' => array(
             'type' => 'text',
