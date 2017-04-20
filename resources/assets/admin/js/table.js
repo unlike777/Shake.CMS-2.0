@@ -31,7 +31,9 @@ $(function() {
                 });
                 
                 my.post($this.attr('data-route'), {objects: arr}, function(data) {
-                    if (!data.error) {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
                         $objects.each(function() {
                             $(this).parents('tr:first').remove();
                         });
