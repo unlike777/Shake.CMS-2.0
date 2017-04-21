@@ -15,6 +15,7 @@
         @endif
             
         <div class="dd-right">
+            <a href="{{ route('admin.pages.create', [$item->id]) }}" class="glyphicon glyphicon-plus" title="Добавить в этот раздел"></a>
             <a href="{{ route('admin.pages.edit', [$item->id]) }}" class="glyphicon glyphicon-pencil"></a>
             <a href="{{ $item->url() }}" class="glyphicon glyphicon-share" target="_blank"></a>
             <a href="{{ route('admin.pages.delete', [$item->id]) }}" class="glyphicon glyphicon-trash table__row_delete js_delete_confirm"></a>

@@ -32,6 +32,14 @@ class PagesController extends AdminController {
         return view('pages::admin.list', compact('items'));
     }
     
+    public function create($id = null) {
+        if ($id) {
+            $this->model->page_id = $id;
+        }
+        
+        return parent::create();
+    }
+    
     public function position() {
         if (!request()->ajax()) {abort(404);}
         
