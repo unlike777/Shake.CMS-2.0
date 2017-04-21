@@ -82,7 +82,7 @@
 	<div class="clear"></div>
 	
 	<div class="col-xs-4">
-		{{ Form::submit('Применить', ['class' => 'btn btn-warning btn-xs', 'name' => 'filter[apply]']) }}
+		{{ Form::submit('Фильтровать', ['class' => 'btn btn-warning btn-xs', 'name' => 'filter[apply]']) }}
 		&nbsp;&nbsp;
 		{{ Form::submit('Сбросить', ['class' => 'btn btn-info btn-xs', 'name' => 'filter[reset]']) }}
 	</div>

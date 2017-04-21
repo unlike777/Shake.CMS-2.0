@@ -54,7 +54,7 @@ $(function() {
 
         my.post($this.attr('data-route'), {objects: [$parent.attr('data-id')]}, function(data) {
 
-            if (data.error == 0) {
+            if (!data.error) {
                 if ($this.hasClass('glyphicon-eye-open')) {
                     $this.removeClass('glyphicon-eye-open').addClass('glyphicon-eye-close');
                 } else {
@@ -79,7 +79,7 @@ $(function() {
             });
 
             my.post($this.attr('data-route'), {objects: arr}, function(data) {
-                if (data.error == 0) {
+                if (!data.error) {
                     $objects.each(function() {
                         var $eye = $(this).parents('tr:first').find('.table__row_eye');
                         if ($eye.hasClass('glyphicon-eye-open')) {
@@ -103,6 +103,11 @@ $(function() {
         if (url) {
             location.href = url;
         }
+    });
+
+    $('.pagination__count select').on('change', function() {
+        var $this = $(this);
+        location.href = $this.val();
     });
     
 });
