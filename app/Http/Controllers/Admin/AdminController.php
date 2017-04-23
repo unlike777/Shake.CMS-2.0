@@ -36,7 +36,11 @@ class AdminController extends Controller {
 
     public function def() {
         $table_html = $this->table->html();
-        return view('admin.default.list', compact('table_html'));
+
+        $view = $this->module.'::admin.list';
+        $view = view()->exists($view) ? $view : 'admin.default.list';
+        
+        return view($view, compact('table_html'));
     }
     
     public function create() {
@@ -48,15 +52,28 @@ class AdminController extends Controller {
             
             $model->fill($data);
             $model->save();
-
+            
+            if (request('seo_block_enable')) {
+                $seo = $model->seoText()->firstOrNew([]);
+                $seo->fill([
+                    'title' => request('seo_title'),
+                    'keywords' => request('seo_keywords'),
+                    'description' => request('seo_description'),
+                ]);
+                $model->seoText()->save($seo);
+            }
+            
             if (request('save_and_close')) {
                 return redirect()->route('admin.'.$this->module.'.def');
             }
             
             return redirect()->route('admin.'.$this->module.'.edit', [$model->id])->with('message', 'Данные успешно сохранены!');
         }
+
+        $view = $this->module.'::admin.form';
+        $view = view()->exists($view) ? $view : 'admin.default.form';
         
-        return view('admin.default.form', compact('model'));
+        return view($view, compact('model'));
     }
     
     public function edit($id) {
@@ -68,6 +85,16 @@ class AdminController extends Controller {
             
             $model->fill($data);
             $model->save();
+
+            if (request('seo_block_enable')) {
+                $seo = $model->seoText()->firstOrNew([]);
+                $seo->fill([
+                    'title' => request('seo_title'),
+                    'keywords' => request('seo_keywords'),
+                    'description' => request('seo_description'),
+                ]);
+                $model->seoText()->save($seo);
+            }
             
             if (request('save_and_close')) {
                 return redirect()->route('admin.'.$this->module.'.def');
@@ -75,8 +102,11 @@ class AdminController extends Controller {
             
             return redirect()->back()->with('message', 'Данные успешно сохранены!');
         }
+
+        $view = $this->module.'::admin.form';
+        $view = view()->exists($view) ? $view : 'admin.default.form';
         
-        return view('admin.default.form', compact('model'));
+        return view($view, compact('model'));
     }
     
     public function delete($id = null) {

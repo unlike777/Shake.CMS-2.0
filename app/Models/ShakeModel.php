@@ -8,6 +8,8 @@
 
 namespace App\Models;
 
+use App\Models\Utils\SeoText;
+use App\Modules\Pages\Models\Page;
 use Illuminate\Database\Eloquent\Model;
 use Schema;
 
@@ -16,7 +18,12 @@ class ShakeModel extends \Eloquent {
     protected $fields = [];
     protected $guarded = []; //all access
     
-    static protected $columns = null; //избегаем множественной генерации запросов для получения списка колонок модели
+    /**
+     * избегаем множественной генерации запросов для получения списка колонок модели
+     * массив, потому что для каждого отдельного класса список полей разный
+     * @var array
+     */
+    static protected $columns = []; 
     
     /**
      * Вернет все поля формирующие форму редактирования
@@ -61,14 +68,22 @@ class ShakeModel extends \Eloquent {
 
     /**
      * При массовом присваивании отсеиваем все поля, которых не существует в таблице
+     * для каждого класса набор полей свой
      * @return array
      */
     public function getFillable() {
-        if (is_null(static::$columns)) {
-            static::$columns = Schema::getColumnListing($this->getTable());
+        if (empty(static::$columns[static::class])) {
+            static::$columns[static::class] = Schema::getColumnListing($this->getTable());
         }
         
-        return static::$columns;
+        return static::$columns[static::class];
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function seoText() {
+        return $this->morphOne(SeoText::class, 'parent');
     }
 
 }

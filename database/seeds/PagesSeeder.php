@@ -34,7 +34,7 @@ class PagesSeeder extends Seeder
             'keywords' => 'Shake, CMS, управление, контент',
             'description' => 'Shake.CMS - удобная, дружелюбная, красивая система управления сайтом!',
             'parent_id' => 2,
-            'parent_type' => 'Page',
+            'parent_type' => Page::class,
         ));
     }
     
@@ -106,35 +106,35 @@ class PagesSeeder extends Seeder
         StickyFile::create(array(
             'file' => '/upload/files/test.rar',
             'parent_id' => '2',
-            'parent_type' => 'Page',
+            'parent_type' => Page::class,
             'field' => 'images',
         ));
         
         StickyFile::create(array(
             'file' => '/upload/files/test_1.rar',
             'parent_id' => '2',
-            'parent_type' => 'Page',
+            'parent_type' => Page::class,
             'field' => 'images',
         ));
         
         StickyFile::create(array(
             'file' => '/upload/images/test_1.png',
             'parent_id' => '2',
-            'parent_type' => 'Page',
+            'parent_type' => Page::class,
             'field' => 'images',
         ));
         
         StickyFile::create(array(
             'file' => '/upload/images/test_3.png',
             'parent_id' => '2',
-            'parent_type' => 'Page',
+            'parent_type' => Page::class,
             'field' => 'test',
         ));
         
         StickyFile::create(array(
             'file' => '/upload/images/stickyfile/2016_02/test_1.png',
             'parent_id' => '2',
-            'parent_type' => 'Page',
+            'parent_type' => Page::class,
             'field' => 'images',
         ));
     }

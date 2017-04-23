@@ -24,13 +24,15 @@
         <div class="row">
 
             {{ Form::model($model) }}
+
+                @include('admin.widgets.seoText.default')
             
                 <div class="col-md-9 form-horizontal">
     
                     @include('admin.widgets.form.default')
                     
                     @include('admin.widgets.form._submit')
-    
+                    
                 </div>
 
             {{ Form::close() }}
