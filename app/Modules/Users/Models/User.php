@@ -84,4 +84,11 @@ class User extends ShakeUser
         
         return validator($data, $rules);
     }
+    
+    public function setPasswordAttribute($value) {
+        $value = trim($value);
+        if ($value) {
+            $this->attributes['password'] = bcrypt($value);
+        }
+    }
 }
