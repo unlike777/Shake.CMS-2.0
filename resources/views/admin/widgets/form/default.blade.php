@@ -101,8 +101,8 @@
         </div>
         
     @elseif ($field['type'] == 'file')
-
-        @if (empty($item->{$fname}) || !file_exists(public_path().$item->{$fname}))
+        
+        @if ( empty($model->{$fname}) || !\Storage::exists($model->{$fname}) )
 
             <div class="form-group">
                 <label class="col-md-3 control-label">{{ $field['title'] }}</label>
@@ -117,7 +117,7 @@
                 <label class="col-md-3 control-label">{{ $field['title'] }}</label>
                 <div class="col-md-9">
                     @php
-                        $mime = mime_content_type(public_path().$item->{$fname});
+                        $mime = mime_content_type(public_path($model->{$fname}));
     
                         $img_check = false;
                         if(substr($mime, 0, 5) == 'image') {
@@ -126,12 +126,12 @@
                     @endphp
 
                     @if ( $img_check )
-                        <a href="{{ $item->{$fname} }}" target="_blank" class="fancybox" rel="form">
-                            <img src="{{ Resizer::image($item->{$fname})->make(200, 100) }}">
+                        <a href="{{ $model->{$fname} }}" target="_blank" class="fancybox" rel="form">
+                            <img src="{{ Resizer::image($model->{$fname})->make(200, 100) }}">
                         </a>
                     @else
-                        <a href="{{ $item->{$fname} }}" target="_blank">
-                            Скачать ({{ $item->{$fname} }}) <br>
+                        <a href="{{ $model->{$fname} }}" target="_blank">
+                            Скачать ({{ $model->{$fname} }}) <br>
                         </a>
                     @endif
 

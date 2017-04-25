@@ -51,6 +51,7 @@ class AdminController extends Controller {
             $this->validateWith($model->validate($data));
             
             $model->fill($data);
+            $model->saveUploadFiles();
             $model->save();
             
             if (request('seo_block_enable')) {
@@ -84,6 +85,7 @@ class AdminController extends Controller {
             $this->validateWith($model->validate($data));
             
             $model->fill($data);
+            $model->saveUploadFiles();
             $model->save();
 
             if (request('seo_block_enable')) {

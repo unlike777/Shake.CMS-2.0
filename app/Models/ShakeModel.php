@@ -12,6 +12,7 @@ use App\Models\Utils\SeoText;
 use App\Modules\Pages\Models\Page;
 use Illuminate\Database\Eloquent\Model;
 use Schema;
+use Storage;
 
 class ShakeModel extends \Eloquent {
     
@@ -84,6 +85,61 @@ class ShakeModel extends \Eloquent {
      */
     public function seoText() {
         return $this->morphOne(SeoText::class, 'parent');
+    }
+
+    /**
+     * Вернет все файловые поля
+     * @return array
+     */
+    public function getFileFields() {
+        $tmp = array();
+        foreach ($this->fields as $key => $item) {
+            if (isset($item['type']) && ($item['type'] == 'file')) {
+                $tmp[] = $key;
+            }
+        }
+        return $tmp;
+    }
+
+    /**
+     * Проверяет и сохраняет файлы пришедшие через POST
+     * @param $input
+     */
+    public function saveUploadFiles() {
+        foreach ($this->getFileFields() as $key) {
+            
+            if (request()->hasFile($key)) {
+                $file = request()->file($key);
+
+                $ext = $file->getClientOriginalExtension();
+                $name = $file->getClientOriginalName();
+                $name = str_replace('.'.$ext, '', $name);
+                $name = str_slug($name, '_');
+                
+                $type = $file->getMimeType();
+                $type = explode('/', $type);
+
+                $type = ($type[0] == 'image') ? 'images' : 'files';
+
+                $new_name = $name.'.'.$ext;
+
+                $destination = 'upload/'.$type.'/'.date('Y_m').'/';
+                
+                $i = 0;
+                while (Storage::exists($destination.$new_name)) {
+                    $i++;
+                    $new_name = $name.'_'.$i.'.'.$ext;
+                }
+                
+                $path = $file->storeAs($destination, $new_name);
+                
+                $this->{$key} = '/'.$path;
+            } else {
+                if (request()->has($key.'_del')) {
+                    $this->{$key} = '';
+                }
+            }
+        }
     }
 
 }

@@ -23,7 +23,7 @@
         
         <div class="row">
 
-            {{ Form::model($model) }}
+            {{ Form::model($model, ['files' => true]) }}
             
                 <div class="col-md-9 form-horizontal">
     

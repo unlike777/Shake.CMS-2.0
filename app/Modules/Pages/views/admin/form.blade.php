@@ -23,7 +23,7 @@
         
         <div class="row">
 
-            {{ Form::model($model) }}
+            {{ Form::model($model, ['files' => true]) }}
 
                 @include('admin.widgets.seoText.default')
             
