@@ -63,13 +63,13 @@
             </div>
         </div>
 
-        {{--<script type="text/javascript">--}}
-            {{--var ckeditor = CKEDITOR.replace('{{$fname}}', {--}}
-                {{--autoGrow_maxHeight: 800,--}}
-                {{--autoGrow_minHeight: 350,--}}
-                {{--height: 350--}}
-            {{--});--}}
-        {{--</script>--}}
+        <script type="text/javascript">
+            var ckeditor = CKEDITOR.replace('{{$fname}}', {
+                autoGrow_maxHeight: 800,
+                autoGrow_minHeight: 350,
+                height: 350
+            });
+        </script>
 
     @elseif ($field['type'] == 'bool')
 

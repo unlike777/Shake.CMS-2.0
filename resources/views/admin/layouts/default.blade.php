@@ -17,6 +17,8 @@
 
     <script type="text/javascript" src="{{ uncache('assets/admin/vendor/vendor.js') }}"></script>
     <script type="text/javascript" src="{{ uncache('assets/admin/app.js') }}"></script>
+    
+    <script type="text/javascript" src="{{ uncache('assets/admin/ckeditor/ckeditor.js') }}"></script>
 
 </head>
 
