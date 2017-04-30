@@ -80,13 +80,6 @@ class ShakeModel extends \Eloquent {
         
         return static::$columns[static::class];
     }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
-     */
-    public function seoText() {
-        return $this->morphOne(SeoText::class, 'parent');
-    }
 
     /**
      * Вернет все файловые поля
@@ -102,6 +95,78 @@ class ShakeModel extends \Eloquent {
         return $tmp;
     }
 
+    /**
+     * Возвратит все приклепленные файлы к объекту
+     * @param null $field - доп. фильтр по типу поля
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function stickyFiles($field = NULL) {
+        $query = $this->morphMany('StickyFile', 'parent');
+
+        if ($field) {
+            $query->where('field', '=', $field);
+        }
+
+        return $query;
+    }
+
+    /**
+     * Возвратит сео текст для данного объекта
+     * @return array|\Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function uniqueFields() {
+        return $this->MorphMany('Field', 'parent');
+    }
+
+    /**
+     * Возвратит сео текст для данного объекта
+     * @return array|\Illuminate\Database\Eloquent\Relations\morphOne
+     */
+    public function seoText() {
+        return $this->morphOne(SeoText::class, 'parent');
+    }
+    
+    public function delete() {
+        
+        $this->seoText()->delete();
+        
+        foreach ($this->stickyFiles()->get() as $file) {
+            $file->delete();
+        }
+        
+        foreach ($this->uniqueFields()->get() as $field) {
+            $field->delete();
+        }
+        
+        foreach ($this->getFileFields() as $key) {
+            Resizer::image($this->{$key})->deleteCache();
+            @unlink(public_path().$this->{$key});
+        }
+        
+        return parent::delete();
+    }
+
+    /**
+     * @param array $options
+     * @return bool
+     */
+    public function save(array $options = array()) {
+        
+        foreach ($this->getFileFields() as $key) {
+            
+            $origin = $this->getOriginal($key);
+            if (!empty($origin)) {
+                if ($this->{$key} != $origin) {
+                    Resizer::image($origin)->deleteCache();
+                    @unlink(public_path().$origin);
+                }
+            }
+            
+        }
+        
+        return parent::save($options);
+    }
+    
     /**
      * Проверяет и сохраняет файлы пришедшие через POST
      * @param $input
