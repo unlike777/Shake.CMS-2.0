@@ -8,8 +8,11 @@
 
 namespace App\Models;
 
+use App\Models\Utils\Field;
 use App\Models\Utils\SeoText;
+use App\Models\Utils\StickyFile;
 use App\Modules\Pages\Models\Page;
+use App\Shake\Libs\Logger;
 use Illuminate\Database\Eloquent\Model;
 use Schema;
 use Storage;
@@ -101,12 +104,12 @@ class ShakeModel extends \Eloquent {
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function stickyFiles($field = NULL) {
-        $query = $this->morphMany('StickyFile', 'parent');
+        $query = $this->morphMany(StickyFile::class, 'parent');
 
         if ($field) {
             $query->where('field', '=', $field);
         }
-
+        
         return $query;
     }
 
@@ -115,7 +118,7 @@ class ShakeModel extends \Eloquent {
      * @return array|\Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function uniqueFields() {
-        return $this->MorphMany('Field', 'parent');
+        return $this->MorphMany(Field::class, 'parent');
     }
 
     /**
@@ -210,6 +213,29 @@ class ShakeModel extends \Eloquent {
                 }
             }
         }
+    }
+
+    /**
+     * Записывает информацию в лог при удалении объекта
+     * @return $this
+     */
+    public function log_on_delete() {
+        
+        $log = new Logger('deletes/delete.log');
+        
+        $obj_info = ['model' => class_basename($this)];
+        foreach (['id', 'title', 'email', 'file', 'field'] as $field) {
+            $obj_info[$field] = $this->{$field};
+        }
+        
+        $str = date('[Y-m-d H:i:s]').'   '
+            .fit_line('['.request()->getClientIp().']', 19).' '
+            .fit_line('['.user_field('email').']', 25)
+            .json_encode($obj_info, JSON_UNESCAPED_UNICODE);
+        
+        $log->add($str)->save();
+        
+        return $this;
     }
 
 }

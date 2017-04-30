@@ -115,12 +115,14 @@ class AdminController extends Controller {
         if ($id) {
             $model = $this->model->findOrFail($id);
             $model->delete();
+            $model->log_on_delete();
             return redirect()->back()->with('message', 'Данные успешно удалены!');
         }
         
         $models = $this->model->whereIn('id', request('objects'))->get();
         $models->map(function($item) {
             $item->delete();
+            $item->log_on_delete();
         });
         return response()->json(['data' => 1]);
     }
