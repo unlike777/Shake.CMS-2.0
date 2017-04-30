@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.4.9 on 2017-04-04.
+ * Generated for Laravel 5.4.9 on 2017-04-30.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -1424,7 +1424,7 @@ namespace {
         /**
          * Get the currently authenticated user.
          *
-         * @return \App\Models\Auth\User|null 
+         * @return \App\Modules\Users\Models\User|null 
          * @static 
          */
         public static function user(){
@@ -1456,7 +1456,7 @@ namespace {
          * Log the given user ID into the application without sessions or cookies.
          *
          * @param mixed $id
-         * @return \App\Models\Auth\User|false 
+         * @return \App\Modules\Users\Models\User|false 
          * @static 
          */
         public static function onceUsingId($id){
@@ -1515,7 +1515,7 @@ namespace {
          *
          * @param mixed $id
          * @param bool $remember
-         * @return \App\Models\Auth\User|false 
+         * @return \App\Modules\Users\Models\User|false 
          * @static 
          */
         public static function loginUsingId($id, $remember = false){
@@ -1558,7 +1558,7 @@ namespace {
         /**
          * Get the last user we attempted to authenticate.
          *
-         * @return \App\Models\Auth\User 
+         * @return \App\Modules\Users\Models\User 
          * @static 
          */
         public static function getLastAttempted(){
@@ -1672,7 +1672,7 @@ namespace {
         /**
          * Return the currently cached user.
          *
-         * @return \App\Models\Auth\User|null 
+         * @return \App\Modules\Users\Models\User|null 
          * @static 
          */
         public static function getUser(){
@@ -1734,7 +1734,7 @@ namespace {
         /**
          * Determine if the current user is authenticated.
          *
-         * @return \App\Models\Auth\User 
+         * @return \App\Modules\Users\Models\User 
          * @throws \Illuminate\Auth\AuthenticationException
          * @static 
          */
@@ -12261,10 +12261,10 @@ namespace {
     class Resizer extends \App\Shake\Facades\Resizer{
         
         /**
-         * Устанавливаем изображение
+         * 
          *
          * @param $img
-         * @return $this 
+         * @return \App\Shake\Libs\Resizer; 
          * @static 
          */
         public static function image($img){
@@ -12302,6 +12302,16 @@ namespace {
          */
         public static function make($width = 0, $height = 0, $scale_type = 0, $bg = 0){
             return \App\Shake\Libs\Resizer::make($width, $height, $scale_type, $bg);
+        }
+        
+        /**
+         * Ресайзит очень большие изображения
+         *
+         * @param $path
+         * @static 
+         */
+        public static function preResize(){
+            return \App\Shake\Libs\Resizer::preResize();
         }
         
     }

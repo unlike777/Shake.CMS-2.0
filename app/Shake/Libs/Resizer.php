@@ -29,6 +29,10 @@ class Resizer {
      * @param $img
      * @return $this
      */
+    /**
+     * @param $img
+     * @return \App\Shake\Libs\Resizer;
+     */
 	public function image($img) {
         if (is_file($this->public_path().$img)) {
             $this->img = $img;
@@ -106,6 +110,62 @@ class Resizer {
 		return $this;
 	}
 
+    /**
+     * Применяет преобразования для картинки
+     * @param \Intervention\Image\Image $img
+     * @param int $width
+     * @param int $height
+     * @param int $scale_type
+     * @param int $bg
+     * @return \Intervention\Image\Image|string
+     */
+	protected function resize(\Intervention\Image\Image $img, $width = 0, $height = 0, $scale_type = 0, $bg = 0) {
+        if (!empty($bg)) {
+            $img->fill($bg);
+        }
+
+        if ($height > 0 && $width > 0) {
+
+            if (($img->width() <= $width) && ($img->height() <= $height)) {
+                return $this->img;
+            }
+
+            if ($scale_type == 1) {
+
+                $kw = $img->width() / $width;
+//					$kh = $img->height() / $height;
+
+                if ( ($img->height() / $kw) <= $height ) {
+                    $img->widen($width);
+                } else {
+                    $img->heighten($height);
+                }
+
+            } else {
+                $img->fit($width, $height);
+            }
+
+
+        } else if ($height > 0) {
+
+            if ($img->width() <= $width) {
+                return $this->img;
+            }
+
+            $img->heighten($height);
+
+        } else if ($width > 0) {
+
+            if ($img->height() <= $height) {
+                return $this->img;
+            }
+
+            $img->widen($width);
+        }
+        
+        return $img;
+    }
+	
 	/**
 	 * Ресайзить картинку и кеширует ее
 	 * @param int $width - ширина
@@ -147,55 +207,38 @@ class Resizer {
 			
 			if (!is_dir($this->public_path() . $dir)) @mkdir($this->public_path() . $dir, 0777, true);
 
-			if (!empty($bg)) {
-				$img->fill($bg);
-			}
-
-			if ($height > 0 && $width > 0) {
-				
-				if (($img->width() <= $width) && ($img->height() <= $height)) {
-					return $this->img;
-				}
-				
-				if ($scale_type == 1) {
-					
-					$kw = $img->width() / $width;
-//					$kh = $img->height() / $height;
-					
-					if ( ($img->height() / $kw) <= $height ) {
-						$img->widen($width);
-					} else {
-						$img->heighten($height);
-					}
-					
-				} else {
-					$img->fit($width, $height);
-				}
-				
-
-			} else if ($height > 0) {
-
-				if ($img->width() <= $width) {
-					return $this->img;
-				}
-
-				$img->heighten($height);
-
-			} else if ($width > 0) {
-
-				if ($img->height() <= $height) {
-					return $this->img;
-				}
-
-				$img->widen($width);
-
-			}
+			$img = $this->resize($img, $width, $height, $scale_type, $bg);
 
 			$img->save(public_path() . $resize_file_name);
 		}
 
 		return $resize_file_name;
 	}
-	
+
+    /**
+     * Ресайзит очень большие изображения
+     * @param $path
+     */
+	public function preResize() {
+
+        if (empty($this->img)) {
+            return false;
+        }
+
+        //на случай, если передана не картинка
+        if (!@exif_imagetype($this->full_path())) {
+            return false;
+        }
+
+        //сечем картинки с высоким разрешением
+        $info = getimagesize($this->full_path());
+        if ( ($info[0] > self::$max_resolution) || ($info[1] > self::$max_resolution) ) {
+            $img = Image::make($this->full_path());
+            $img = $this->resize($img, self::$max_resolution, self::$max_resolution, 1);
+            $img->save($this->full_path());
+        }
+        
+        return true;
+    }
 	
 }

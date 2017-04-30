@@ -13,6 +13,7 @@ use App\Modules\Pages\Models\Page;
 use Illuminate\Database\Eloquent\Model;
 use Schema;
 use Storage;
+use Resizer;
 
 class ShakeModel extends \Eloquent {
     
@@ -132,6 +133,10 @@ class ShakeModel extends \Eloquent {
                 }
                 
                 $path = $file->storeAs($destination, $new_name);
+                
+                if ($type == 'images') {
+                    Resizer::image('/'.$path)->preResize();
+                }
                 
                 $this->{$key} = '/'.$path;
             } else {
