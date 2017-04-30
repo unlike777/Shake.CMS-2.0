@@ -47,7 +47,14 @@ class ShakeModel extends \Eloquent {
         return validator($data);
     }
 
-
+    /**
+     * Вернет список ajax'овых файловых заргузчиков
+     * @return array
+     */
+    public function getAjaxFields() {
+        return $this->ajax_files;
+    }
+    
     /**
      * Вернет все поля по которым можно фильтровать в общем списке
      * @return array
@@ -191,11 +198,11 @@ class ShakeModel extends \Eloquent {
                 $type = ($type[0] == 'image') ? 'images' : 'files';
 
                 $new_name = $name.'.'.$ext;
-
-                $destination = 'upload/'.$type.'/'.date('Y_m').'/';
+                
+                $destination = 'upload/'.$type.'/'.date('Y_m');
                 
                 $i = 0;
-                while (Storage::exists($destination.$new_name)) {
+                while (Storage::exists($destination.'/'.$new_name)) {
                     $i++;
                     $new_name = $name.'_'.$i.'.'.$ext;
                 }
