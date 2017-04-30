@@ -197,7 +197,7 @@ if (! function_exists('module_path')) {
      */
     function module_path($module_name, $path = '')
     {
-        return app('path') . DIRECTORY_SEPARATOR . 'Modules' . DIRECTORY_SEPARATOR . ucfirst($module_name) . ($path ? DIRECTORY_SEPARATOR.$path : $path);
+        return app('path') . DIRECTORY_SEPARATOR . 'Modules' . DIRECTORY_SEPARATOR . ucfirst(camel_case($module_name)) . ($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 }
 

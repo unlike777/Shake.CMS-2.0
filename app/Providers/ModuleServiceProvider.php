@@ -43,7 +43,7 @@ class ModuleServiceProvider extends ServiceProvider
             $path = module_path($module_name, 'routes/'.$group.'.php');
             if (File::exists($path)) {
                 Route::middleware($group)
-                    ->namespace($this->namespace.'\\'.ucfirst($module_name).'\\Controllers')
+                    ->namespace($this->namespace.'\\'.ucfirst(camel_case($module_name)).'\\Controllers')
                     ->group($path);
             }
         }
