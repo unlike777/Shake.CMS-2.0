@@ -21,20 +21,20 @@ gulp.task('fonts', function() {
 
 gulp.task('vendors:js', function() {
     return gulp.src(mainBowerFiles('**/*.js'), { base: 'resources/assets/admin/bower_components' })
-        // .pipe(sourcemaps.init())
+        .pipe(sourcemaps.init())
         .pipe(uglify())
         .pipe(concat('vendor.js'))
-        // .pipe(sourcemaps.write())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('public/assets/admin/vendor'));
 });
 
 gulp.task('vendors:css', function() {
     return gulp.src(mainBowerFiles('**/*.{css,less}'), { base: 'resources/assets/admin/bower_components' })
         .pipe(less())
-        // .pipe(sourcemaps.init())
+        .pipe(sourcemaps.init())
         .pipe(minifyCSS())
         .pipe(concat('vendor.css'))
-        // .pipe(sourcemaps.write())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('public/assets/admin/vendor'));
 });
 
