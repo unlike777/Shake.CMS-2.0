@@ -49,9 +49,9 @@ $(document).ready(function() {
 		var $this = $(this),
 			$item = $this.parents('.ufields__item:first'),
 			id = $item.attr('data-id');
-		
-		if (confirm('Вы точно хотите удалить поле?')) {
-			if (id > 0) {
+
+		if (id > 0) {
+			if (confirm('Вы точно хотите удалить поле?')) {
 				$.get('/admin/fields/delete/'+id, function(data) {
 					if (data.error > 0) {
 						alert(data.data);
@@ -59,9 +59,9 @@ $(document).ready(function() {
 						$('#ufields').replaceWith(data.data);
 					}
 				});
-			} else {
-				$item.remove();
 			}
+		} else {
+			$item.remove();
 		}
 		
 	});
