@@ -33,14 +33,24 @@
                     
                     @include('admin.widgets.form._submit')
 
-                    <div class="col-md-3"></div>
-                    <div class="col-md-9">
-                        @include('admin.widgets.stickyFiles.default', compact('model'))
-                    </div>
+                    
                     
                 </div>
             
             {{ Form::close() }}
+            
+            <div class="col-md-9">
+                <div class="col-md-3"></div>
+                <div class="col-md-9">
+                    @include('admin.widgets.stickyFiles.default', compact('model'))
+                </div>
+
+                <div class="col-md-3"></div>
+                <div class="col-md-9">
+                    @include('admin.widgets.fields.default', compact('model'))
+                </div>
+            </div>
+            
         </div>
         
 
