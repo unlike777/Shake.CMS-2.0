@@ -37,7 +37,7 @@ class Resizer {
         if (is_file($this->public_path().$img)) {
             $this->img = $img;
         } else {
-            $this->$img = '';
+            $this->img = '';
         }
         return $this;
 	}
