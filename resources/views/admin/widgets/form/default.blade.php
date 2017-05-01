@@ -126,7 +126,7 @@
                     @endphp
 
                     @if ( $img_check )
-                        <a href="{{ $model->{$fname} }}" target="_blank" class="fancybox" rel="form">
+                        <a href="{{ $model->{$fname} }}" data-fancybox="form" target="_blank">
                             <img src="{{ Resizer::image($model->{$fname})->make(200, 100) }}">
                         </a>
                     @else

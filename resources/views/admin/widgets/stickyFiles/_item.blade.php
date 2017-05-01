@@ -2,7 +2,7 @@
 	<div class="drop__file_item_del glyphicon glyphicon-remove"></div>
 	
 	@if ($file->is_image())
-		<a href="{{ $file->file }}" target="_blank" class="fancybox" rel="sticky[{{ $field }}]">
+		<a href="{{ $file->file }}" target="_blank" data-fancybox="sticky_{{ $field }}">
 			<img src="{{ \Resizer::image($file->file)->make(160, 160) }}">
 		</a>
 	@else

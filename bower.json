@@ -16,6 +16,7 @@
     "font-awesome": "font-awsome#^4.7.0",
     "NestableBower": "*",
     "jquery.cookie": "jquery-cookie#^1.4.1",
-    "jquery-form": "^4.2.1"
+    "jquery-form": "^4.2.1",
+    "fancybox": "master"
   }
 }
