@@ -32,8 +32,7 @@ class AuthController extends AdminController
             if (Auth::attempt($request->only('email', 'password'), $request->has('remember'))) {
                 return Redirect::intended(route('admin'));
             }
-            
-            return Redirect::back()->withInput()->withErrors(['errors' => ['Неправильная пара логин/пароль']]);
+            error('Неправильная пара логин/пароль');
         }
         
         return view('dashboard::admin.login');

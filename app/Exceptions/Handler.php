@@ -49,17 +49,17 @@ class Handler extends ExceptionHandler
     {
         if ($e instanceof ErrorMessage) {
             if ($request->ajax()) {
-                return response()->json(['error' => ['text' => $e->getMessage()]]);
+                return response()->json(['error' => ['text' => $e->getMessage(), 'code' => $e->getCode()]]);
             } else {
                 if (request()->header('referer')) {
-                    return redirect()->back()->withErrors($e->getMessage())->withInput();
+                    return redirect()->back()->withErrors(['errors' => $e->getMessage()])->withInput();
                 }
             }
         }
-
+        
         if ($e instanceof ValidationException) {
             if ($request->ajax()) {
-                return response()->json(['error' => ['text' => $e->validator->getMessageBag()->first()]]);
+                return response()->json(['error' => ['text' => $e->validator->getMessageBag()->first(), 'code' => $e->getCode()]]);
             }
         }
 

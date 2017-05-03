@@ -1,5 +1,5 @@
 @if ($model->exists)
-	<div class="row" id="ufields">
+	<div id="ufields">
 		<div class="col-md-12 ufields" data-id="{{ $model->id }}">
 			
 			<div class="col-md-4">
