@@ -6,7 +6,7 @@
  * Time: 21:32
  */
 
-namespace App\Http\Controllers\Admin\Auth;
+namespace App\Modules\Dashboard\Controllers\Admin;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Modules\Users\Models\User;
@@ -23,22 +23,20 @@ class AuthController extends AdminController
     
     public function login(Request $request)
     {
-        if (!empty($_POST))
-        {
+        if (!empty($_POST)) {
             $this->validate($request, [
                 'email' => 'required|email',
                 'password' => 'required',
             ]);
             
-            if (Auth::attempt($request->only('email', 'password'), $request->has('remember')))
-            {
+            if (Auth::attempt($request->only('email', 'password'), $request->has('remember'))) {
                 return Redirect::intended(route('admin'));
             }
             
-            return Redirect::back()->withInput()->withErrors(['errors' => ['Неправильная пара логин/пароль', '123123']]);
+            return Redirect::back()->withInput()->withErrors(['errors' => ['Неправильная пара логин/пароль']]);
         }
         
-        return view('admin.login');
+        return view('dashboard::admin.login');
     }
     
     public function logout()
