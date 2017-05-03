@@ -20,7 +20,7 @@
 </head>
 
 <body style="background: #222;">
-@php(dd($errors->first()))
+
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-sm-push-3">
