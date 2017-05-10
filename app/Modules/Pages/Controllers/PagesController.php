@@ -25,7 +25,7 @@ class PagesController extends Controller {
 
         $parent = $item;
 
-        while ($parent = $parent->parent){
+        while ($parent = $parent->parent) {
             Menu::add($parent);
         }
 
