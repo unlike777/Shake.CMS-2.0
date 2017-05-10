@@ -248,6 +248,8 @@ return [
         //Shake
         'Date' => App\Shake\Facades\Date::class,
         'Resizer' => App\Shake\Facades\Resizer::class,
+        'Menu' => App\Shake\Facades\Menu::class,
+        'SEO' => App\Shake\Facades\SEO::class,
         
         //additional
         'Form' => Collective\Html\FormFacade::class,

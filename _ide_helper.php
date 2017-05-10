@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.4.9 on 2017-04-30.
+ * Generated for Laravel 5.4.9 on 2017-05-10.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12312,6 +12312,68 @@ namespace {
          */
         public static function preResize(){
             return \App\Shake\Libs\Resizer::preResize();
+        }
+        
+    }
+
+
+    class Menu extends \App\Shake\Facades\Menu{
+        
+    }
+
+
+    class SEO extends \App\Shake\Facades\SEO{
+        
+        /**
+         * Возвращает Заголовок окна
+         *
+         * @return string 
+         * @static 
+         */
+        public static function title(){
+            return \App\Shake\Libs\SEO::title();
+        }
+        
+        /**
+         * Возвращает Ключевые слова
+         *
+         * @return string 
+         * @static 
+         */
+        public static function keywords(){
+            return \App\Shake\Libs\SEO::keywords();
+        }
+        
+        /**
+         * Возвращает Мета описание
+         *
+         * @return string 
+         * @static 
+         */
+        public static function description(){
+            return \App\Shake\Libs\SEO::description();
+        }
+        
+        /**
+         * Установить объект который будет участвовать в генерации СЕО текстов
+         *
+         * @param $obj
+         * @static 
+         */
+        public static function set($obj){
+            return \App\Shake\Libs\SEO::set($obj);
+        }
+        
+        /**
+         * Добавляет поведение для разных классов
+         *
+         * @param $model
+         * @param $kind
+         * @param $foo
+         * @static 
+         */
+        public static function change($model, $kind, $foo){
+            return \App\Shake\Libs\SEO::change($model, $kind, $foo);
         }
         
     }

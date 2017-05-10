@@ -10,7 +10,7 @@
     
     <title>Shake.CMS</title>
 
-    <link rel="SHORTCUT ICON" href="/admin/favicon.ico">
+    <link rel="SHORTCUT ICON" href="/assets/admin/favicon.ico">
 
     <link type="text/css" rel="stylesheet" href="{{ uncache('assets/admin/vendor/vendor.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ uncache('assets/admin/app.css') }}">
