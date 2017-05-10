@@ -20,26 +20,29 @@
 
     @elseif ($field['type'] == 'date')
 
-        @php
-        $format = isset($field['format']) ? $field['format'] : 'YYYY-MM-DD HH:mm:ss';
-        @endphp
+        @php ($format = isset($field['format']) ? $field['format'] : 'Y-m-d H:i:S')
 
         <div class="form-group">
             <label class="col-md-3 control-label">{{ $field['title'] }}</label>
             <div class="col-md-9">
                 <div class='input-group date' id='datetimepicker_{{ $fname }}'>
-                    {{ Form::text($fname, null, array('class' => 'form-control')) }}
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
+                    {{ Form::text($fname, null, array('class' => 'form-control')) }}
                 </div>
             </div>
 
             <script type="text/javascript">
-                $(function () {
-                    $('#datetimepicker_{{ $fname }}').datetimepicker({
+                $(document).ready(function() {
+                    flatpickr('#datetimepicker_{{ $fname }} input', {
+                        dateFormat: '{{ $format }}',
                         locale: 'ru',
-                        format: '{{ $format }}'
+                        enableTime: true,
+                        time_24hr: true,
+                        onReady: function() {
+                            $('#datetimepicker_{{ $fname }} input').removeAttr('readonly');
+                        }
                     });
                 });
             </script>

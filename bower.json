@@ -17,6 +17,7 @@
     "NestableBower": "*",
     "jquery.cookie": "jquery-cookie#^1.4.1",
     "jquery-form": "^4.2.1",
-    "fancybox": "master"
+    "fancybox": "master",
+    "flatpickr": "flatpickr-calendar#^2.6.1"
   }
 }

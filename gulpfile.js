@@ -20,7 +20,10 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('vendors:js', function() {
-    return gulp.src(mainBowerFiles('**/*.js'), { base: 'resources/assets/admin/bower_components' })
+    var files = mainBowerFiles('**/*.js');
+    files.push('resources/assets/admin/bower_components/flatpickr/src/l10n/ru.js');
+    
+    return gulp.src(files)
         // .pipe(sourcemaps.init())
         .pipe(uglify())
         .pipe(concat('vendor.js'))
@@ -29,7 +32,7 @@ gulp.task('vendors:js', function() {
 });
 
 gulp.task('vendors:css', function() {
-    return gulp.src(mainBowerFiles('**/*.{css,less}'), { base: 'resources/assets/admin/bower_components' })
+    return gulp.src(mainBowerFiles('**/*.{css,less}'))
         .pipe(less())
         // .pipe(sourcemaps.init())
         .pipe(minifyCSS())
