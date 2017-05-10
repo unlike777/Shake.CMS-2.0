@@ -26,10 +26,10 @@
             <label class="col-md-3 control-label">{{ $field['title'] }}</label>
             <div class="col-md-9">
                 <div class='input-group date' id='datetimepicker_{{ $fname }}'>
+                    {{ Form::text($fname, null, array('class' => 'form-control')) }}
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                    {{ Form::text($fname, null, array('class' => 'form-control')) }}
                 </div>
             </div>
 
