@@ -40,9 +40,7 @@
                         locale: 'ru',
                         enableTime: true,
                         time_24hr: true,
-                        onReady: function() {
-                            $('#datetimepicker_{{ $fname }} input').removeAttr('readonly');
-                        }
+                        allowInput: true
                     });
                 });
             </script>
