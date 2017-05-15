@@ -149,7 +149,7 @@ class ShakeModel extends \Eloquent {
         }
         
         foreach ($this->getFileFields() as $key) {
-            resizer($this->{$key})->deleteCache();
+            Resizer::image($this->{$key})->deleteCache();
             @unlink(public_path().$this->{$key});
         }
         
@@ -167,7 +167,7 @@ class ShakeModel extends \Eloquent {
             $origin = $this->getOriginal($key);
             if (!empty($origin)) {
                 if ($this->{$key} != $origin) {
-                    resizer($origin)->deleteCache();
+                    Resizer::image($origin)->deleteCache();
                     @unlink(public_path().$origin);
                 }
             }
@@ -210,7 +210,7 @@ class ShakeModel extends \Eloquent {
                 $path = $file->storeAs($destination, $new_name);
                 
                 if ($type == 'images') {
-                    resizer('/'.$path)->preResize();
+                    Resizer::image('/'.$path)->preResize();
                 }
                 
                 $this->{$key} = '/'.$path;

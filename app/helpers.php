@@ -252,11 +252,3 @@ function reg() {
     return null;
 }
 
-/**
- * @param $img
- * @return \App\Shake\Libs\Resizer
- */
-function resizer($img) {
-    return app('resizer')->image($img);
-}
-

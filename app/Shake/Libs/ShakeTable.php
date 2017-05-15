@@ -198,7 +198,7 @@ class ShakeTable {
 		    
 		    if ($col['type'] == 'img') {
                 if (!empty($val)) {
-                    $val = '<a href="'.$val.'" data-fancybox taget="_blank"><img src="'.resizer($val)->make(200, $this->max_img_dimension, 1).'"></a>';
+                    $val = '<a href="'.$val.'" data-fancybox taget="_blank"><img src="'.Resizer::image($val)->make(200, $this->max_img_dimension, 1).'"></a>';
                 }
             }
 			
