@@ -3,7 +3,7 @@
 	
 	@if ($file->is_image())
 		<a href="{{ $file->file }}" target="_blank" data-fancybox="sticky_{{ $field }}">
-			<img src="{{ \Resizer::image($file->file)->make(160, 160) }}">
+			<img src="{{ resizer($file->file)->make(160, 160) }}">
 		</a>
 	@else
 		<a href="{{ $file->file }}" target="_blank">
