@@ -22,17 +22,35 @@ class PagesController extends Controller {
 
         SEO::set($item);
         Menu::add($item);
-
+        
         $parent = $item;
-
+        
         while ($parent = $parent->parent) {
             Menu::add($parent);
         }
-
+        
         $templ = empty($item->template) ? 'default' : $item->template;
-
-        return view('pages::templates.'.$templ, ['item' => $item]);
+        
+        $data = [];
+        
+        //подгружаем доп. данные необходимые для каждого щаблона
+        $method = 'data'.ucfirst($templ);
+        if (method_exists($this, $method)) {
+            $data = $this->{$method}($item);
+        }
+        
+        $data['item'] = $item;
+        
+        return view('pages::templates.'.$templ, $data);
     }
-    
+
+    /**
+     * Доп. данные для шаблона Home
+     * @return array
+     */
+    protected function dataHome() {
+        $data = [];
+        return $data;
+    }
     
 }
