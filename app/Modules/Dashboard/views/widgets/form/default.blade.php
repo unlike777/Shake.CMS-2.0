@@ -6,6 +6,7 @@
             <label class="col-md-3 control-label">{{ $field['title'] }}</label>
             <div class="col-md-9">
                 {{ Form::text($fname, null, array('class' => 'form-control')) }}
+                @include('dashboard::widgets.form._help', compact('field'))
             </div>
         </div>
 
@@ -15,6 +16,7 @@
             <label class="col-md-3 control-label">{{ $field['title'] }}</label>
             <div class="col-md-9">
                 {{ Form::text($fname, null, array('class' => 'form-control', 'disabled' => 'disabled')) }}
+                @include('dashboard::widgets.form._help', compact('field'))
             </div>
         </div>
 
@@ -31,6 +33,7 @@
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
+                @include('dashboard::widgets.form._help', compact('field'))
             </div>
 
             <script type="text/javascript">
@@ -52,6 +55,7 @@
             <label class="col-md-3 control-label">{{ $field['title'] }}</label>
             <div class="col-md-9">
                 {{ Form::textarea($fname, null, array('class' => 'form-control')) }}
+                @include('dashboard::widgets.form._help', compact('field'))
             </div>
         </div>
 
@@ -60,6 +64,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">{{ $field['title'] }}</label>
             <div class="col-md-9">
+                @include('dashboard::widgets.form._help', compact('field'))
                 {{ Form::textarea($fname, null, array('class' => 'form-control')) }}
             </div>
         </div>
@@ -80,6 +85,7 @@
                     <label>
                         {{ Form::hidden($fname, 0) }}
                         {{ Form::checkbox($fname, 1) }} {{ $field['title'] }}
+                        @include('dashboard::widgets.form._help', compact('field'))
                     </label>
                 </div>
             </div>
@@ -98,6 +104,7 @@
             <label class="col-md-3 control-label">{{ $field['title'] }}</label>
             <div class="col-md-9">
                 {{ Form::select($fname, $field['values'], null, array('class' => 'form-control')) }}
+                @include('dashboard::widgets.form._help', compact('field'))
             </div>
         </div>
         
@@ -109,6 +116,7 @@
                 <label class="col-md-3 control-label">{{ $field['title'] }}</label>
                 <div class="col-md-9">
                     {{ Form::file($fname) }}
+                    @include('dashboard::widgets.form._help', compact('field'))
                 </div>
             </div>
             
@@ -139,6 +147,8 @@
                     {{ Form::checkbox($fname.'_del', 0, 0, array('id' => $fname.'_del')) }}
                     {{ Form::label($fname.'_del', 'Удалить?') }}
                     {{ Form::hidden($fname, null, array('class' => 'form-control')) }}
+                    
+                    @include('dashboard::widgets.form._help', compact('field'))
                 </div>
             </div>
         @endif
@@ -152,6 +162,7 @@
                 {{ Form::text('', '', array('style' => 'display: none;', 'autocomplete' => 'off')) }} {{-- autocomplete disable --}}
                 {{ Form::password($fname, array('style' => 'display: none;', 'autocomplete' => 'off')) }} {{-- autocomplete disable --}}
                 {{ Form::password($fname, array('class' => 'form-control', 'autocomplete' => 'off')) }}
+                @include('dashboard::widgets.form._help', compact('field'))
             </div>
         </div>
 

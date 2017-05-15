@@ -48,6 +48,7 @@ class User extends ShakeUser
         'password' => array(
             'type' => 'password',
             'title' => 'Пароль',
+            'help' => 'Заполните это поле, только если хотите поменять пароль',
         ),
         
     );
