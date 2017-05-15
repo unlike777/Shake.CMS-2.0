@@ -244,5 +244,9 @@ class ShakeModel extends \Eloquent {
         
         return $this;
     }
+    
+    public function scopePubl($query) {
+        $query->whereActive(true);
+    }
 
 }
