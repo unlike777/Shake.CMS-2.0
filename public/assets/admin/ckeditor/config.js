@@ -36,4 +36,6 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 
 	config.filebrowserBrowseUrl = '/elfinder/ckeditor';
+
+	config.extraPlugins = 'autogrow';
 };
