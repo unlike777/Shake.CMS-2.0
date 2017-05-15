@@ -212,3 +212,12 @@ function error($message = '', $code = 0, $previous = null) {
     throw new \App\Exceptions\ErrorMessage($message, $code, $previous);
 }
 
+/**
+ * Вернет настройку по алиасу
+ * @param $alias
+ * @return mixed
+ */
+function setting($alias) {
+    return app('App\Modules\Settings\Models\Setting')->firstOrNew(['alias' => $alias])->text;
+}
+

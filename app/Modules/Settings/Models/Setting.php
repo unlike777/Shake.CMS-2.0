@@ -6,29 +6,29 @@ use App\Models\ShakeModel;
 
 class Setting extends ShakeModel
 {
-    protected $fields = array(
-        'title' => array(
+    protected $fields = [
+        'title' => [
             'type' => 'text',
             'title' => 'Назначение',
             'filter' => true,
-        ),
-        'alias' => array(
+        ],
+        'alias' => [
             'type' => 'text',
             'title' => 'Алиас (для быстрого вызова)',
-        ),
-        'text' => array(
+        ],
+        'text' => [
             'type' => 'textarea',
             'title' => 'Текст',
-        ),
-    );
+        ],
+    ];
     
     public function validate($data, $behavior = 'default') {
         
-        $rules = array(
+        $rules = [
             'title' => 'required|min:2',
             'alias' => 'required|alpha_dash|between:2,255|unique:settings,alias',
             'text' => '',
-        );
+        ];
         
         if (!empty($this->id)) {
             $rules['alias'] = $rules['alias'].','.$this->id;
@@ -43,6 +43,6 @@ class Setting extends ShakeModel
      * @return mixed
      */
     public static function getValue($alias) {
-        return static::firstOrNew(array('alias' => $alias))->text;
+        return static::firstOrNew(['alias' => $alias])->text;
     }
 }
