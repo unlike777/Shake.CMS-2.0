@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Shake\ViewComposers\MenuComposer;
+use App\Shake\ViewComposers\SitemapComposer;
 use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider
@@ -15,6 +16,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('dashboard::widgets.menu.main', MenuComposer::class);
+        view()->composer('pages::sitemap.default', SitemapComposer::class);
     }
 
     /**
