@@ -185,8 +185,19 @@ class Resizer {
 			return $this->img;
 		}
 
+        //сечем картинки с высоким разрешением
+        $info = getimagesize($this->full_path());
+        if ( ($info[0] > self::$max_resolution) || ($info[1] > self::$max_resolution) ) {
+            return 'resize_error?big_resolution';
+        }
+
 		$width = intval($width);
 		$height = intval($height);
+
+        if ( ($info[0] <= $width) && ($info[1] <= $height) ) {
+            return $this->img;
+        }
+        
 		$scale_type = ($scale_type != 0) ? 1 : 0; //может быть только 0 или 1
 
 		$pref = $this->resize_prefix();
@@ -196,12 +207,6 @@ class Resizer {
 		$resize_file_name = $dir.'/'.$pref.substr(strrchr($this->img, "/"), 1);
 
 		if (!file_exists($this->public_path() . $resize_file_name)) {
-			
-			//сечем картинки с высоким разрешением
-			$info = getimagesize($this->full_path());
-			if ( ($info[0] > self::$max_resolution) || ($info[1] > self::$max_resolution) ) {
-				return 'resize_error?big_resolution';
-			}
 			
 			$img = Image::make($this->full_path());
 			
