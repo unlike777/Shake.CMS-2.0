@@ -221,3 +221,34 @@ function setting($alias) {
     return app('App\Modules\Settings\Models\Setting')->firstOrNew(['alias' => $alias])->text;
 }
 
+/**
+ * @param dynamic  key|key,default|data|null
+ * @return mixed|null
+ */
+function reg() {
+    $args = func_get_args();
+    
+    if (empty($args)) {
+        return null;
+    }
+    
+    if (is_array($args[0])) { 
+        $key = key($args[0]);
+        $val = reset($args[0]);
+        
+        if (is_null($val)) {
+            App\Modules\Settings\Models\Reg::del($key);
+        } else {
+            App\Modules\Settings\Models\Reg::set($key, $val);
+        }
+        
+        return null;
+    }
+    
+    if (is_string($args[0])) {
+        return App\Modules\Settings\Models\Reg::get($args[0], $args[1] ?? null);
+    }
+    
+    return null;
+}
+
