@@ -117,14 +117,14 @@ class Page extends ShakeModel
     public function url() {
         
         if ($this->is_home) {
-            return '/';
+            return url('/');
         }
         
         if (trim($this->link)) {
-            return $this->link;
+            return url($this->link);
         }
         
-        return '/pages/'.$this->slug;
+        return route('pages', [$this->slug]);
     }
     
     public function pages() {
