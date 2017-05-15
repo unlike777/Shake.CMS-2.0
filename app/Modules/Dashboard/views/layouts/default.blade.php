@@ -93,7 +93,7 @@
         </ul>
         
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-        @include('admin.widgets.menu.main')
+        @include('dashboard::widgets.menu.main')
         <!-- /.navbar-collapse -->
         
     </nav>

@@ -30,7 +30,7 @@ class FieldsController {
         
         if ($field->save()) {
             $parent->uniqueFields()->save($field);
-            $view = view('admin.widgets.fields.default', ['model' => $parent, 'field_id' => $field->id])->render();
+            $view = view('dashboard::widgets.fields.default', ['model' => $parent, 'field_id' => $field->id])->render();
             return response(['error' => 0, 'data' => $view]);
         }
         
@@ -57,7 +57,7 @@ class FieldsController {
         $field->fill($data);
         
         if ($field->save()) {
-            $view = view('admin.widgets.fields.default', ['model' => $field->parent, 'field_id' => $field->id])->render();
+            $view = view('dashboard::widgets.fields.default', ['model' => $field->parent, 'field_id' => $field->id])->render();
             return response(['error' => 0, 'data' => $view]);
         }
         
@@ -77,7 +77,7 @@ class FieldsController {
         $field->log_on_delete();
         $field->delete();
         
-        $view = view('admin.widgets.fields.default', ['model' => $field->parent])->render();
+        $view = view('dashboard::widgets.fields.default', ['model' => $field->parent])->render();
         return response(['error' => 0, 'data' => $view]);
     }
     

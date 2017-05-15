@@ -20,7 +20,7 @@ class AjaxController {
             $file->saveUploadFiles();
             if ($file->save()) {
                 $parent->morphMany(StickyFile::class, 'parent')->save($file);
-                $data = view('admin.widgets.stickyFiles._item', compact('file', 'field'))->render();
+                $data = view('dashboard::widgets.stickyFiles._item', compact('file', 'field'))->render();
                 return response(['error' => 0, 'data' => $data]);
             }
         }

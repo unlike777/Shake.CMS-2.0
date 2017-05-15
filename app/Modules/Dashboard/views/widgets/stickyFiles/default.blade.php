@@ -19,7 +19,7 @@
 			
 			<div class="drop__file_list">
 				@foreach($model->stickyFiles($field)->get() as $file)
-					@include('admin.widgets.stickyFiles._item', ['file' => $file, 'field' => $field])
+					@include('dashboard::widgets.stickyFiles._item', ['file' => $file, 'field' => $field])
 				@endforeach
 				{{--<div class="drop__file_item"></div>--}}
 			</div>

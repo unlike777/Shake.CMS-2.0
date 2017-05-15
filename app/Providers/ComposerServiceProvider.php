@@ -14,7 +14,7 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('admin.widgets.menu.main', MenuComposer::class);
+        view()->composer('dashboard::widgets.menu.main', MenuComposer::class);
     }
 
     /**

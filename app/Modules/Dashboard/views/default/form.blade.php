@@ -1,4 +1,4 @@
-@extends('admin.layouts.default')
+@extends('dashboard::layouts.default')
 
 @section('content')
 
@@ -27,9 +27,9 @@
             
                 <div class="col-md-9 form-horizontal">
     
-                    @include('admin.widgets.form.default')
+                    @include('dashboard::widgets.form.default')
                     
-                    @include('admin.widgets.form._submit')
+                    @include('dashboard::widgets.form._submit')
     
                 </div>
 

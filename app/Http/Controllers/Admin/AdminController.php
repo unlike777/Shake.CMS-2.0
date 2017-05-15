@@ -38,7 +38,7 @@ class AdminController extends Controller {
         $table_html = $this->table->html();
 
         $view = $this->module.'::admin.list';
-        $view = view()->exists($view) ? $view : 'admin.default.list';
+        $view = view()->exists($view) ? $view : 'dashboard::default.list';
         
         return view($view, compact('table_html'));
     }
@@ -72,7 +72,7 @@ class AdminController extends Controller {
         }
 
         $view = $this->module.'::admin.form';
-        $view = view()->exists($view) ? $view : 'admin.default.form';
+        $view = view()->exists($view) ? $view : 'dashboard::default.form';
         
         return view($view, compact('model'));
     }
@@ -106,7 +106,7 @@ class AdminController extends Controller {
         }
 
         $view = $this->module.'::admin.form';
-        $view = view()->exists($view) ? $view : 'admin.default.form';
+        $view = view()->exists($view) ? $view : 'dashboard::default.form';
         
         return view($view, compact('model'));
     }

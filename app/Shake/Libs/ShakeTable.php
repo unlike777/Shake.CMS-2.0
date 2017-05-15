@@ -231,7 +231,7 @@ class ShakeTable {
 	 * @return $this|\Illuminate\View\View
 	 */
 	public function filter() {
-		return view('admin.widgets.filter.default')->with(['fields' => $this->filter_fields]);
+		return view('dashboard::widgets.filter.default')->with(['fields' => $this->filter_fields]);
 	}
 	
 	/**

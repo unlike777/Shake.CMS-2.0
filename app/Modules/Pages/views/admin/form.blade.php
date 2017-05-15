@@ -1,4 +1,4 @@
-@extends('admin.layouts.default')
+@extends('dashboard::layouts.default')
 
 @section('content')
 
@@ -25,13 +25,13 @@
 
             {{ Form::model($model, ['files' => true]) }}
 
-                @include('admin.widgets.seoText.default')
+                @include('dashboard::widgets.seoText.default')
             
                 <div class="col-md-9 form-horizontal">
     
-                    @include('admin.widgets.form.default')
+                    @include('dashboard::widgets.form.default')
                     
-                    @include('admin.widgets.form._submit')
+                    @include('dashboard::widgets.form._submit')
 
                     
                     
@@ -42,11 +42,11 @@
             <div class="col-md-9">
                 <div class="col-md-3"></div>
                 <div class="col-md-9">
-                    @include('admin.widgets.stickyFiles.default', compact('model'))
+                    @include('dashboard::widgets.stickyFiles.default', compact('model'))
                 </div>
             </div>
 
-            @include('admin.widgets.fields.default', compact('model'))
+            @include('dashboard::widgets.fields.default', compact('model'))
             
         </div>
         
