@@ -29,12 +29,12 @@ class SettingsController extends AdminController {
     }
     
     public function def() {
-        $this->table->add('title', 'Описание', 0);
-        $this->table->add('alias', 'Алиас', 0);
-        $this->table->add('created_at', 'Дата создания', 0, function($val, $obj) {
+        $this->table->add('title', 'Описание');
+        $this->table->add('alias', 'Алиас');
+        $this->table->add('created_at', 'Дата создания', 'text', 0, function($val, $obj) {
             return Date::parse($val)->format('j mm Y H:i:s');
         });
-        $this->table->add('updated_at', 'Дата обновления', 0, function($val, $obj) {
+        $this->table->add('updated_at', 'Дата обновления', 'text', 0, function($val, $obj) {
             return Date::parse($val)->format('j mm Y H:i:s');
         });
         

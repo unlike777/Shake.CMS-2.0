@@ -5,6 +5,7 @@ namespace App\Shake\Libs;
 use Form;
 use Illuminate\Support\Facades\Input;
 use View;
+use Resizer;
 
 class ShakeTable {
 
@@ -13,13 +14,17 @@ class ShakeTable {
 	 */
 	private $model; 					//Модель с которой предстоит работать
 	private $data; 						//Полученные данные, к ним применяются фильтры и постраничная навигация
-	private $columns = array();			//колонки
+	private $columns = [];			    //колонки
 	private $module = '';				//название модуля
-	private $page_counts_arr = array(12, 25, 50, 100);
-	
-	private $filter_fields = array(); 	//поля участвующие в фильтре
 
-	private $def_sort = array(); //сортировка по умолчанию  array('param', 'trend')
+    private $filter_fields = []; 	    //поля участвующие в фильтре
+
+    private $def_sort = [];             //сортировка по умолчанию  array('param', 'trend')
+
+    private $max_img_dimension = 40;   //максимальная размерность картинки, после чего она заресайзена
+    
+	private $page_counts_arr = [12, 25, 50, 100];
+    
 
 	/**
 	 * конструктор
@@ -58,32 +63,40 @@ class ShakeTable {
 	 * @param string $trend
 	 */
 	public function set_def_sort($param, $trend = 'asc') {
-		$this->def_sort = array($param, $trend);
+		$this->def_sort = [$param, $trend];
 	}
 
 	/**
 	 * Добавляем колонку
 	 * @param $name
 	 * @param string $title
-	 * @param int $width
+     * @param $type - text|img тип поля
+     * @param int $width
 	 * @param object|bool $callback - функция для обработки значения
 	 * @param bool $sort - если false то отключает сортировку у столбца
 	 */
-	public function add($name, $title = '', $width = 0, $callback = false, $sort = true) {
+	public function add($name, $title = '', $type = 'text', $width = 0, $callback = false, $sort = true) {
 		
 		if (empty($title)) {
 			$title = $name;
 		}
 		
-		$this->columns[$name] = array(
+		$this->columns[$name] = [
+		    'type' => $type,
 			'title' => $title,
 			'width' => $width,
 			'callback' => $callback,
 			'sort' => $sort,
-		);
+		];
 		
 		return $this;
 	}
+	
+	//алиас для добавления картинок
+	public function addImg($name, $title = '', $width = 0, $callback = false, $sort = true) {
+	    $this->add($name, $title, 'img', $width, $callback, $sort);
+	    return $this;
+    }
 
 	/**
 	 * генерируем заголовки таблицы
@@ -119,12 +132,12 @@ class ShakeTable {
 				
 			}
 			
-			$query = add_to_query(array(
+			$query = add_to_query([
 				'sort_param' => $name, 
 				'sort_trend' => $param,
-			));
+			]);
 			
-			$sort = link_to_route('admin.'.$this->module.'.def', '', $query, array('class' => $glyph));
+			$sort = link_to_route('admin.'.$this->module.'.def', '', $query, ['class' => $glyph]);
 			
 			if (!$col['sort']) {
 				$sort = '';
@@ -168,7 +181,7 @@ class ShakeTable {
 	 */
 	public function row($item) {
 		$ret = '';
-		$ret .= '<td>'.Form::checkbox('', 1, NULL, array('class' => 'table__checkbox')).'</td>';
+		$ret .= '<td>'.Form::checkbox('', 1, NULL, ['class' => 'table__checkbox']).'</td>';
 
 		if ($this->model->hasActive()) {
 			if ($item->active == 1) {
@@ -181,7 +194,14 @@ class ShakeTable {
 		$ret .= '<td>'.$item->id.'</td>';
 		
 		foreach ($this->columns as $name => $col) {
-			$val = $item->{$name};
+            $val = $item->{$name};
+		    
+		    if ($col['type'] == 'img') {
+                if (!empty($val)) {
+                    $val = '<a href="'.$val.'" data-fancybox taget="_blank"><img src="'.Resizer::image($val)->make(200, $this->max_img_dimension, 1).'"></a>';
+                }
+            }
+			
 			if (!empty($col['callback'])) {
 				$val = $col['callback']($val, $item);
 			}
@@ -189,12 +209,12 @@ class ShakeTable {
 		}
 		
 		$ret .= '<td>'
-			.link_to_route('admin.'.$this->module.'.edit', '', array('id' => $item->id), array('class' => 'glyphicon glyphicon-pencil'))
+			.link_to_route('admin.'.$this->module.'.edit', '', ['id' => $item->id], ['class' => 'glyphicon glyphicon-pencil'])
 			.'&nbsp;&nbsp;&nbsp;'
-			.link_to_route('admin.'.$this->module.'.delete', '', array('id' => $item->id), array('class' => 'glyphicon glyphicon-trash table__row_delete'))
+			.link_to_route('admin.'.$this->module.'.delete', '', ['id' => $item->id], ['class' => 'glyphicon glyphicon-trash table__row_delete'])
 			.'</td>';
 
-		$ret = '<tr class="table__row" data-id="'.$item->id.'" data-edit="'.route('admin.'.$this->module.'.edit', array('id' => $item->id)).'">'.$ret.'</tr>';
+		$ret = '<tr class="table__row" data-id="'.$item->id.'" data-edit="'.route('admin.'.$this->module.'.edit', ['id' => $item->id]).'">'.$ret.'</tr>';
 		
 		return $ret;
 	}
@@ -219,7 +239,7 @@ class ShakeTable {
 			$ret .= '<button type="button" class="btn btn-default table__multi_delete" data-route="/admin/'.$this->module.'/delete"><span class="glyphicon glyphicon-trash"></span></button>';
 			$ret .= '</div>';
 
-			$ret = '<thead><tr><td>'.Form::checkbox('', 1, null, array('style' => 'margin-top: 9px;', 'class' => 'table__check_all')).'</td><td colspan="999">'.$ret.'</td></tr></thead>';
+			$ret = '<thead><tr><td>'.Form::checkbox('', 1, null, ['style' => 'margin-top: 9px;', 'class' => 'table__check_all']).'</td><td colspan="999">'.$ret.'</td></tr></thead>';
 		}
 
 		
@@ -244,7 +264,7 @@ class ShakeTable {
 		
 		foreach ($this->page_counts_arr as $count) {
 			
-			$link = add_to_query(array('per_page' => $count));
+			$link = add_to_query(['per_page' => $count]);
 			
 			if (Input::query('per_page') == $count) {
 				$ret .= '<option value="?'.$link.'" selected="selected">'.$count.'</option>';
@@ -317,7 +337,7 @@ class ShakeTable {
 				$cur_field = $this->filter_fields['filter['.$key.']'];
 				
 				$strict = false;
-				if (in_array($cur_field['type'], array('select', 'bool'))) {
+				if (in_array($cur_field['type'], ['select', 'bool'])) {
 					$strict = true;
 				} else if (isset($cur_field['strict']) && $cur_field['strict']) {
 					$strict = true;
