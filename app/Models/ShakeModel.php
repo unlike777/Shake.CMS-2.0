@@ -28,7 +28,18 @@ class ShakeModel extends \Eloquent {
      * массив, потому что для каждого отдельного класса список полей разный
      * @var array
      */
-    static protected $columns = []; 
+    static protected $columns = [];
+
+    public function __construct(array $attributes = []) {
+
+        //для поля сортировки
+        $fields = $this->getFillable();
+        if (in_array('sort', $fields)) {
+            $this->sort = static::max('sort') + 10;
+        }
+
+        parent::__construct($attributes);
+    }
     
     /**
      * Вернет все поля формирующие форму редактирования
