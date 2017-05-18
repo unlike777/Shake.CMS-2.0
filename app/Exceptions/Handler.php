@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\Debug\Exception\FlattenException;
@@ -65,6 +66,9 @@ class Handler extends ExceptionHandler
 
         if (!($e instanceof ValidationException)) {
             $exception = FlattenException::create($e);
+            if ($e instanceof ModelNotFoundException) {
+                $exception->setStatusCode(404);
+            }
             $code = $exception->getStatusCode($exception);
 
             if (!config('app.debug')) {
