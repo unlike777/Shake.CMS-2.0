@@ -14,8 +14,8 @@ class PagesController extends AdminController {
      *
      * @return void
      */
-    public function __construct(Page $page) {
-        $this->model = $page;
+    public function __construct(Page $model) {
+        $this->model = $model;
         
         view()->share([
             'module' => $this->module,

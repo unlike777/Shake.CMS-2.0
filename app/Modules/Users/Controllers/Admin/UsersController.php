@@ -15,8 +15,8 @@ class UsersController extends AdminController {
      *
      * @return void
      */
-    public function __construct(User $user) {
-        $this->model = $user;
+    public function __construct(User $model) {
+        $this->model = $model;
         parent::__construct();
 
         view()->share([

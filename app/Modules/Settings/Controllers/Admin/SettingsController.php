@@ -15,8 +15,8 @@ class SettingsController extends AdminController {
      *
      * @return void
      */
-    public function __construct(Setting $setting) {
-        $this->model = $setting;
+    public function __construct(Setting $model) {
+        $this->model = $model;
         parent::__construct();
         
         view()->share([
