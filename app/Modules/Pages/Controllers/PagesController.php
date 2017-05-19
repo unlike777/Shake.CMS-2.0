@@ -18,7 +18,11 @@ class PagesController extends Controller {
     }
 
     public function pages($slug) {
-        $item = Page::where('slug', '=', $slug)->where('link', '=', '')->firstOrFail();
+        $item = Page::where('slug', '=', $slug)->where('link', '=', '');
+        if (!request('admin_mode')) {
+            $item->publ();
+        }
+        $item = $item->firstOrFail();
 
         SEO::set($item);
         Menu::add($item);
