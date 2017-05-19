@@ -140,6 +140,19 @@ class ShakeModel extends \Eloquent {
     }
 
     /**
+     * Получение текста уникального поля
+     * @param $alias
+     * @return string
+     */
+    public function uField($alias) {
+        $uField = $this->uniqueFields()->whereField($alias)->first();
+        if ($uField) {
+            return $uField->text;
+        }
+        return '';
+    }
+
+    /**
      * Возвратит сео текст для данного объекта
      * @return array|\Illuminate\Database\Eloquent\Relations\morphOne
      */
