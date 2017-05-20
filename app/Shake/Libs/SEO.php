@@ -35,8 +35,8 @@ class SEO {
 					$text = $seo->{$kind};
 				}
 				
-				if (empty($text) && isset($this->changed[class_basename($this->obj)][$kind])) {
-					$foo = $this->changed[class_basename($this->obj)][$kind];
+				if (empty($text) && isset($this->changed[get_class($this->obj)][$kind])) {
+					$foo = $this->changed[get_class($this->obj)][$kind];
 					$text = $foo($this->obj, $text);
 				}
 			}
@@ -52,7 +52,7 @@ class SEO {
 	 * @param $kind
 	 * @return string
 	 */
-	protected function getDefSeoText($kind) {
+	public function getDefSeoText($kind) {
 		$text = '';
 		if ($this->checkKind($kind)) {
 			if ($home = Page::where('is_home', '=', 1)->first()) {

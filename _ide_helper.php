@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.4.9 on 2017-05-10.
+ * Generated for Laravel 5.4.9 on 2017-05-20.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12319,10 +12319,39 @@ namespace {
 
     class Menu extends \App\Shake\Facades\Menu{
         
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function add($obj){
+            return \App\Shake\Libs\Menu::add($obj);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function isActive($obj){
+            return \App\Shake\Libs\Menu::isActive($obj);
+        }
+        
     }
 
 
     class SEO extends \App\Shake\Facades\SEO{
+        
+        /**
+         * Вернет СЕО текст по умолчанию, на случай если никакой текст не найден
+         *
+         * @param $kind
+         * @return string 
+         * @static 
+         */
+        public static function getDefSeoText($kind){
+            return \App\Shake\Libs\SEO::getDefSeoText($kind);
+        }
         
         /**
          * Возвращает Заголовок окна

@@ -185,6 +185,7 @@ return [
         App\Providers\ShakeServiceProvider::class,
         App\Providers\ModuleServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
+        App\Providers\SeoServiceProvider::class,
         
         /**
          * additional
