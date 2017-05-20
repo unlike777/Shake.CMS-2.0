@@ -4,6 +4,6 @@
     @elseif ($field['type'] == 'bool')
         <i>({{ $field['help'] }})</i>
     @else
-        <p class="help-block"></p>
+        <p class="help-block" style="margin-bottom: 0;">{{ $field['help'] }}</p>
     @endif
 @endif

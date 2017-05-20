@@ -19,6 +19,7 @@ class Page extends ShakeModel
         'slug' => array(
             'type' => 'text',
             'title' => 'Псевдо адрес',
+            'help' => 'заполняется автоматически',
         ),
         'active' => array(
             'type' => 'bool',
@@ -82,6 +83,12 @@ class Page extends ShakeModel
             $pos = self::max('position') + 1;
             $obj->position = $pos;
         });
+
+        static::saving(function($obj) {
+            if (empty($obj->slug)) {
+                $obj->slug = str_slug($obj->title);
+            }
+        });
         
         static::deleting(function($obj) {
             $obj->pages->map(function($item) {
@@ -96,9 +103,14 @@ class Page extends ShakeModel
      * @return \Illuminate\Validation\Validator
      */
     public function validate($data, $behavior = 'default') {
+
+        if (empty($data['slug'])) {
+            $data['slug'] = str_slug($data['title']);
+        }
+        
         $rules = array(
             'title' => 'required|min:2',
-            'slug' => 'required|alpha_dash|between:2,255|unique:pages,slug',
+            'slug' => 'alpha_dash|between:2,255|unique:pages,slug',
             'content' => '',
             'active' => 'boolean',
             'is_home' => 'boolean',
