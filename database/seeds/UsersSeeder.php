@@ -13,7 +13,7 @@ class UsersSeeder extends Seeder
     public function run()
     {
         Eloquent::unguard();
-    
+        
         DB::table('users')->truncate();
     
         User::create(array(
