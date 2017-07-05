@@ -270,7 +270,11 @@ class ShakeModel extends \Eloquent {
     }
     
     public function scopePubl($query) {
-        $query->whereActive(true);
+        $user = auth()->user();
+        $is_admin_mode = request('admin_mode') && $user && $user->isAdmin();
+        if (!$is_admin_mode) {
+            $query->whereActive(true);
+        }
     }
 
 }

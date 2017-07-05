@@ -92,4 +92,8 @@ class User extends ShakeUser
             $this->attributes['password'] = bcrypt($value);
         }
     }
+    
+    public function isAdmin() {
+        return $this->group == 'admin';
+    }
 }
