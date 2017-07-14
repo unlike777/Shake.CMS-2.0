@@ -20,23 +20,30 @@
                 </ol>
             </div>
         </div>
-        
+
         <div class="row">
 
             {{ Form::model($model, ['files' => true]) }}
-            
-                <div class="col-md-9 form-horizontal">
-    
-                    @include('dashboard::widgets.form.default')
-                    
-                    @include('dashboard::widgets.form._submit')
-    
-                </div>
+
+            @include('dashboard::widgets.seoText.default')
+
+            <div class="col-md-9 form-horizontal">
+
+                @include('dashboard::widgets.form.default')
+
+                @include('dashboard::widgets.form._submit')
+
+            </div>
 
             {{ Form::close() }}
+
+            @include('dashboard::widgets.stickyFiles.default', compact('model'))
+
+            @include('dashboard::widgets.fields.default', compact('model'))
+
         </div>
-        
+
 
     </div>
-    
+
 @endsection

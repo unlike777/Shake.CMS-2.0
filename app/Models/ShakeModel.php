@@ -23,6 +23,10 @@ class ShakeModel extends \Eloquent {
     protected $fields = [];
     protected $guarded = []; //all access
     
+    public $enableSEO = false;
+    public $enableSticky = false;
+    public $enableUFields = false;
+    
     /**
      * избегаем множественной генерации запросов для получения списка колонок модели
      * массив, потому что для каждого отдельного класса список полей разный

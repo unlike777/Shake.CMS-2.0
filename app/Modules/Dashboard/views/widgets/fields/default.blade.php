@@ -1,4 +1,4 @@
-@if ($model->exists)
+@if ($model->exists && $model->enableUFields)
 	<div id="ufields">
 		<div class="col-md-12 ufields" data-id="{{ $model->id }}">
 			

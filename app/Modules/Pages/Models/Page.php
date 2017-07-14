@@ -6,6 +6,10 @@ use App\Models\ShakeModel;
 
 class Page extends ShakeModel
 {
+    public $enableSEO = true;
+    public $enableSticky = true;
+    public $enableUFields = true;
+    
     protected $attributes = array(
         'page_id' => 0,
         'active' => 1,
