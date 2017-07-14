@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\Modules\Make;
+use App\Console\Commands\Modules\Migration;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +15,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Make::class, Migration::class
     ];
 
     /**
