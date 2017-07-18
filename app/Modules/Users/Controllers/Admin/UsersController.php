@@ -2,11 +2,11 @@
 
 namespace App\Modules\Users\Controllers\Admin;
 
-use App\Http\Controllers\Admin\AdminController;
+use App\Modules\Dashboard\Controllers\Admin\DefaultController;
 use App\Modules\Users\Models\User;
 use Date;
 
-class UsersController extends AdminController {
+class UsersController extends DefaultController {
 
     protected $module = 'users';
     

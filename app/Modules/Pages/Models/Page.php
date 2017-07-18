@@ -2,7 +2,7 @@
 
 namespace App\Modules\Pages\Models;
 
-use App\Models\ShakeModel;
+use App\Modules\Dashboard\Models\ShakeModel;
 
 class Page extends ShakeModel
 {

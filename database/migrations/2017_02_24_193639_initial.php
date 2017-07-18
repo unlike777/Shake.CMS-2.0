@@ -29,6 +29,7 @@ class Initial extends Migration
             $table->increments('id');
             $table->string('file');
             $table->string('field');
+            $table->integer('sort');
             $table->integer('parent_id', false, true)->index();
             $table->string('parent_type');
             $table->timestamps();

@@ -4,8 +4,8 @@ use Illuminate\Database\Seeder;
 
 use App\Modules\Pages\Models\Page;
 
-use App\Models\Utils\SeoText;
-use App\Models\Utils\StickyFile;
+use App\Modules\Dashboard\Models\Utils\SeoText;
+use App\Modules\Dashboard\Models\Utils\StickyFile;
 
 class PagesSeeder extends Seeder
 {

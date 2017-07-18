@@ -20,7 +20,7 @@
 					</div>
 
 					<div class="drop__file_list">
-						@foreach($model->stickyFiles($field)->get() as $file)
+						@foreach($model->stickyFiles($field)->orderBy('sort')->get() as $file)
 							@include('dashboard::widgets.stickyFiles._item', ['file' => $file, 'field' => $field])
 						@endforeach
 						{{--<div class="drop__file_item"></div>--}}

@@ -2,9 +2,9 @@
 
 namespace App\Modules\Info\Controllers\Admin;
 
-use App\Http\Controllers\Admin\AdminController;
+use App\Modules\Dashboard\Controllers\Admin\DefaultController;
 
-class InfoController extends AdminController {
+class InfoController extends DefaultController {
 
     protected $module = 'info';
     

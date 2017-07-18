@@ -4,7 +4,7 @@ namespace App\Modules\Users\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Models\ShakeUser;
+use App\Modules\Dashboard\Models\ShakeUser;
 
 class User extends ShakeUser 
 {

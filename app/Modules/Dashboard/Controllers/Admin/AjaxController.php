@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Modules\Dashboard\Controllers\Admin;
 
-use App\Models\Utils\StickyFile;
+use App\Modules\Dashboard\Models\Utils\StickyFile;
 
 class AjaxController {
 

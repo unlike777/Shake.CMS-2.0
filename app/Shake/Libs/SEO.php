@@ -10,7 +10,7 @@
 
 namespace App\Shake\Libs;
 
-use App\Models\ShakeModel;
+use App\Modules\Dashboard\Models\ShakeModel;
 use App\Modules\Pages\Models\Page;
 
 class SEO {

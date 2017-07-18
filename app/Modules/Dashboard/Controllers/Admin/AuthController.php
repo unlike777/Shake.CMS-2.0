@@ -8,13 +8,13 @@
 
 namespace App\Modules\Dashboard\Controllers\Admin;
 
-use App\Http\Controllers\Admin\AdminController;
+use App\Modules\Dashboard\Controllers\Admin\DefaultController;
 use App\Modules\Users\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 use Redirect;
 
-class AuthController extends AdminController
+class AuthController extends DefaultController
 {
     public function __construct(User $user)
     {

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Modules\Dashboard\Controllers\Admin;
 
-use App\Models\Utils\Field;
-use App\Models\ShakeModel;
+use App\Modules\Dashboard\Models\Utils\Field;
+use App\Modules\Dashboard\Models\ShakeModel;
 
 class FieldsController {
     

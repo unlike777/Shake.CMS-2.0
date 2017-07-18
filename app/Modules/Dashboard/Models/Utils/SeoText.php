@@ -6,9 +6,9 @@
  * Time: 17:17
  */
 
-namespace App\Models\Utils;
+namespace App\Modules\Dashboard\Models\Utils;
 
-use App\Models\ShakeModel;
+use App\Modules\Dashboard\Models\ShakeModel;
 
 class SeoText extends ShakeModel
 {

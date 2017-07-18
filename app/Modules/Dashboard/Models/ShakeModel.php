@@ -6,11 +6,11 @@
  * Time: 17:08
  */
 
-namespace App\Models;
+namespace App\Modules\Dashboard\Models;
 
-use App\Models\Utils\Field;
-use App\Models\Utils\SeoText;
-use App\Models\Utils\StickyFile;
+use App\Modules\Dashboard\Models\Utils\Field;
+use App\Modules\Dashboard\Models\Utils\SeoText;
+use App\Modules\Dashboard\Models\Utils\StickyFile;
 use App\Modules\Pages\Models\Page;
 use App\Shake\Libs\Logger;
 use Illuminate\Database\Eloquent\Model;

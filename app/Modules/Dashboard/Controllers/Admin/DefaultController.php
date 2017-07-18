@@ -6,15 +6,15 @@
  * Time: 21:32
  */
 
-namespace App\Http\Controllers\Admin;
+namespace App\Modules\Dashboard\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Shake\Libs\ShakeTable;
 
-class AdminController extends Controller {
+class DefaultController extends Controller {
     
     /**
-     * @var $model \App\Models\ShakeModel;
+     * @var $model \App\Modules\Dashboard\Models\ShakeModel;
      */
     protected $model;
 

@@ -2,7 +2,7 @@
 
 namespace App\Modules\Settings\Models;
 
-use App\Models\ShakeModel;
+use App\Modules\Dashboard\Models\ShakeModel;
 
 class Reg extends ShakeModel {
 	

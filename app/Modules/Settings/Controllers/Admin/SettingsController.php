@@ -2,11 +2,11 @@
 
 namespace App\Modules\Settings\Controllers\Admin;
 
-use App\Http\Controllers\Admin\AdminController;
+use App\Modules\Dashboard\Controllers\Admin\DefaultController;
 use App\Modules\Settings\Models\Setting;
 use Date;
 
-class SettingsController extends AdminController {
+class SettingsController extends DefaultController {
     
     protected $module = 'settings';
     

@@ -2,10 +2,10 @@
 
 namespace App\Modules\Pages\Controllers\Admin;
 
-use App\Http\Controllers\Admin\AdminController;
+use App\Modules\Dashboard\Controllers\Admin\DefaultController;
 use App\Modules\Pages\Models\Page;
 
-class PagesController extends AdminController {
+class PagesController extends DefaultController {
 
     protected $module = 'pages';
     

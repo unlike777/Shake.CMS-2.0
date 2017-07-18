@@ -10,7 +10,7 @@ use Resizer;
 class ShakeTable {
 
 	/**
-	 * @var $model \App\Models\ShakeModel
+	 * @var $model \App\Modules\Dashboard\Models\ShakeModel
 	 */
 	private $model; 					//Модель с которой предстоит работать
 	private $data; 						//Полученные данные, к ним применяются фильтры и постраничная навигация

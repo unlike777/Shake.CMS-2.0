@@ -2,9 +2,9 @@
 
 namespace App\Modules\Dashboard\Controllers\Admin;
 
-use App\Http\Controllers\Admin\AdminController;
+use App\Modules\Dashboard\Controllers\Admin\DefaultController;
 
-class DashboardController extends AdminController {
+class DashboardController extends DefaultController {
 
     protected $module = 'dashboard';
     

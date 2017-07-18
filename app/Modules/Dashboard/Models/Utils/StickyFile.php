@@ -6,9 +6,9 @@
  * Time: 17:17
  */
 
-namespace App\Models\Utils;
+namespace App\Modules\Dashboard\Models\Utils;
 
-use App\Models\ShakeModel;
+use App\Modules\Dashboard\Models\ShakeModel;
 use Symfony\Component\HttpFoundation\File\File;
 
 class StickyFile extends ShakeModel
@@ -32,8 +32,23 @@ class StickyFile extends ShakeModel
             'type' => 'text',
             'title' => 'Поле',
         ),
+        'sort' => array(
+            'type' => 'text',
+            'title' => 'Сортировка',
+        ),
     );
     
+    public function __construct(array $attributes = []) {
+        parent::__construct($attributes);
+        
+        $max_sort = static::whereParentId($this->parent_id)
+            ->whereParentType($this->parent_type)
+            ->whereField($this->field)
+            ->max('sort');
+        
+        $this->sort = $max_sort + 1;
+    }
+
     public function validate($data, $behavior = 'default') {
         
         $rules = array(
