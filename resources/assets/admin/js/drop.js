@@ -10,10 +10,8 @@ $(document).ready(function() {
 		return a;
 	}
 
-	var ext_arr = ['png', 'jpg', 'jpeg', 'bmp', 'rar', 'tar', 'zip', 'gzip', 'pdf', 'mp3', 'doc', 'docx', 'xls', 'xslx'],
-		max_file_size = 20*1024*1024;
-	
-	
+	var ext_arr = ['png', 'jpg', 'jpeg', 'bmp', 'rar', 'tar', 'zip', 'gzip', 'pdf', 'mp3', 'doc', 'docx', 'xls', 'xslx'];
+	var	max_file_size = 20 * 1024 * 1024;
 	
 	$('.drop').each(function() {
 		var $drop = $(this),
@@ -26,7 +24,7 @@ $(document).ready(function() {
 			//console.log(e);
 		}
 
-		function stateChange(e) {
+		function stateChange(e, file_arr, i) {
 			if (e.target.readyState == 4) {
 				if (e.target.status == 200) {
 					
@@ -37,6 +35,10 @@ $(document).ready(function() {
 					
 					if (upload_count >= files_count) {
 						$drop_zone.text('Загрузка успешно завершена!');
+					} else {
+						if (file_arr[i + 1]) {
+							sendFile(file_arr, i + 1);
+						}
 					}
 					
 					//$drop_zone.removeClass('drop__zone--error');
@@ -57,6 +59,26 @@ $(document).ready(function() {
 					$drop_zone.addClass('drop__zone--error');
 				}
 			}
+		}
+		
+		function sendFile(file_arr, i) {
+			var xhr = new XMLHttpRequest();
+			var file = file_arr[i];
+			
+			xhr.upload.addEventListener('progress', uploadProgress, false);
+			xhr.onreadystatechange = function(e) {
+				stateChange(e, file_arr, i);
+			}; 
+			xhr.open('POST', '/admin/ajax/upload');
+			xhr.setRequestHeader('X-FILE-NAME', encodeURIComponent(file.name));
+			// xhr.setRequestHeader('X-XSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
+			var fd = new FormData;
+			fd.append("file", file);
+			fd.append("field", $drop.attr('data-field'));
+			fd.append("model", $drop.attr('data-model'));
+			fd.append("id", $drop.attr('data-id'));
+			fd.append("_token", $('meta[name="csrf-token"]').attr('content'));
+			xhr.send(fd);
 		}
 		
 		
@@ -105,23 +127,8 @@ $(document).ready(function() {
 			}
 
 			$drop_zone.text('Загрузка: 0%');
-			
-			for (var i = 0; i < file.length; i++) {
-				var xhr = new XMLHttpRequest();
-			
-				xhr.upload.addEventListener('progress', uploadProgress, false);
-				xhr.onreadystatechange = stateChange;
-				xhr.open('POST', '/admin/ajax/upload');
-				xhr.setRequestHeader('X-FILE-NAME', encodeURIComponent(file[i].name));
-				// xhr.setRequestHeader('X-XSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
-				var fd = new FormData;
-				fd.append("file", file[i]);
-				fd.append("field", $drop.attr('data-field'));
-				fd.append("model", $drop.attr('data-model'));
-				fd.append("id", $drop.attr('data-id'));
-				fd.append("_token", $('meta[name="csrf-token"]').attr('content'));
-				xhr.send(fd);
-			}
+
+			sendFile(file, 0);
 
 		};
 		
