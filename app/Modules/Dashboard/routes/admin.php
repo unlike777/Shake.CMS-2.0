@@ -10,6 +10,7 @@ Route::group(['prefix' => 'admin'], function() {
     //ajax загрузка файлов
     Route::any('ajax/upload', 'Admin\AjaxController@upload')->name('admin.ajax.upload');
     Route::any('ajax/delete', 'Admin\AjaxController@delete')->name('admin.ajax.delete');
+    Route::any('ajax/move', 'Admin\AjaxController@move')->name('admin.ajax.move');
 
     //уникальные поля
     Route::any('fields/create/{parent_id}', 'Admin\FieldsController@create')->name('admin.fields.create');

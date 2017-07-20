@@ -1,5 +1,32 @@
 $(document).ready(function() {
 
+	$('.drop__file_list').sortable({
+		// group: '.drop__file_list',
+		containerSelector: '.drop__file_list',
+		itemSelector: '.drop__file_item',
+		vertical: false,
+		pullPlaceholder: true,
+		placeholder: '<div class="drop__file_item drop__file_item--placeholder"></div>',
+		bodyClass: '',
+		onDrop: function($item, container, _super, event) {
+			$item.removeClass(container.group.options.draggedClass).removeAttr("style")
+			$("body").removeClass(container.group.options.bodyClass)
+			
+			var params = {
+				'item_id': $item.attr('data-id'),
+				'left_item_id': $item.prev().attr('data-id'),
+			};
+			
+			$.post('/admin/ajax/move', params, function(data) {
+				
+			}, 'json').fail(function() {
+				alert('Произошла ошибка, сортировка не применилась');
+			});
+		},
+		handle: 'a',
+	});
+	
+	
 	window.files_count = 0;
 	window.upload_count = 0;
 	
@@ -135,7 +162,10 @@ $(document).ready(function() {
 	});
 	
 	
-	$('.drop__file_list').on('click', '.drop__file_item_del', function() {
+	$('.drop__file_list').on('click', '.drop__file_item_del', function(e) {
+		
+		e.preventDefault();
+		
 		var $this = $(this),
 			$parent = $this.parents('.drop__file_item:first'),
 			id = $parent.attr('data-id');
@@ -146,6 +176,7 @@ $(document).ready(function() {
 			}
 		}, 'json')
 		
+		return false;
 	});
 	
 });

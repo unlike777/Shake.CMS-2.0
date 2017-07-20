@@ -37,17 +37,6 @@ class StickyFile extends ShakeModel
             'title' => 'Сортировка',
         ),
     );
-    
-    public function __construct(array $attributes = []) {
-        parent::__construct($attributes);
-        
-        $max_sort = static::whereParentId($this->parent_id)
-            ->whereParentType($this->parent_type)
-            ->whereField($this->field)
-            ->max('sort');
-        
-        $this->sort = $max_sort + 1;
-    }
 
     public function validate($data, $behavior = 'default') {
         

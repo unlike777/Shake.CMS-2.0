@@ -18,6 +18,7 @@
     "jquery.cookie": "jquery-cookie#^1.4.1",
     "jquery-form": "^4.2.1",
     "fancybox": "master",
-    "flatpickr": "flatpickr-calendar#^2.6.1"
+    "flatpickr": "flatpickr-calendar#^2.6.1",
+    "jquery-sortable": "^0.9.13"
   }
 }
