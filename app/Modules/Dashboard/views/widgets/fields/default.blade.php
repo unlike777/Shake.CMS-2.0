@@ -11,8 +11,8 @@
 			<div class="clear"></div>
 			
 			<div class="ufields__wr">
-				{{ Form::open() }}
-					<div class="col-md-4 ufields__item ufields__item--gag">
+				{{ Form::open(['class' => 'ufields__item--gag']) }}
+					<div class="col-md-4 ufields__item">
 						<div class="ufields__item_inner">
 							<div class="ufields__input">
 								{{ Form::text('field', null, ['placeholder' => 'Алиас']) }}
@@ -38,11 +38,15 @@
 				
 				@if ($model->uniqueFields()->count())
 					@foreach($model->uniqueFields()->get() as $field)
-						{{ Form::model($field) }}
+						
+						@php( $changed_item = ( isset($field_id) && ($field->id == $field_id) ) )
+						
+						{{ Form::model($field, ['class' => $changed_item ? 'ufields__form--changed' : '']) }}
+						
 							<div class="col-md-4 ufields__item" data-id="{{ $field->id }}">
 								<div class="ufields__item_inner">
 									<div class="ufields__input">
-										{{ Form::text('field', null, ['placeholder' => 'Алиас']) }}
+										{{ Form::text('field', null, ['placeholder' => 'Алиас', 'disabled' => 'disabled']) }}
 									</div>
 									
 									<div class="ufields__textarea">
@@ -54,11 +58,15 @@
 											<span class="glyphicon glyphicon-ok"></span> Сохранить
 										</div>
 										
-										<div class="btn btn-danger btn-xs ufields__delete">
+										<div class="btn btn-danger btn-xs ufields__delete" style="display: none;">
 											<span class="glyphicon glyphicon-remove"></span> Удалить
 										</div>
 										
-										@if (isset($field_id) && ($field->id == $field_id) )
+										<div class="btn btn-warning btn-xs ufields__change">
+											Настройки для разработчика
+										</div>
+										
+										@if ($changed_item)
 											<div class="glyphicon glyphicon-ok-sign ufields__sign"></div>
 										@endif
 									</div>

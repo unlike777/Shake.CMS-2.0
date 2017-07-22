@@ -3,7 +3,7 @@ $(document).ready(function() {
 	//добавляем еще один блок
 	$('body').on('click', '#ufields__add', function() {
 		var $tmp = $('.ufields__item--gag').clone().removeClass('ufields__item--gag');
-		$('.ufields__item:last').after($tmp);
+		$('.ufields__item:last').parents('form:first').after($tmp);
 	});
 	
 	$('body').on('click', '.ufields__save', function() {
@@ -30,10 +30,14 @@ $(document).ready(function() {
 				if (data.error > 0) {
 					alert(data.data);
 				} else {
-					$('#ufields').replaceWith(data.data);
+					var changed_item = $(data.data).find('.ufields__form--changed');
+					$form.replaceWith(changed_item);
+					$('.ufields__form--changed').removeClass('ufields__form--changed');
 					$('.ufields__sign').fadeIn(function() {
 						setTimeout(function() {
-							$('.ufields__sign').fadeOut();
+							$('.ufields__sign').fadeOut(function() {
+								$('.ufields__sign').remove();
+							});
 						}, 1200);
 					});
 				}
@@ -64,6 +68,15 @@ $(document).ready(function() {
 			$item.remove();
 		}
 		
+	});
+	
+	$('body').on('click', '.ufields__change', function() {
+		var $this = $(this);
+		var $item = $this.parents('.ufields__item:first');
+		
+		$this.hide();
+		$item.find('.ufields__input input').removeAttr('disabled');
+		$item.find('.ufields__delete').show();
 	});
 	
 });

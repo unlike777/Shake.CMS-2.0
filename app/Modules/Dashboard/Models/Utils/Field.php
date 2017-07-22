@@ -50,6 +50,10 @@ class Field extends ShakeModel
             'field' => 'required|max:255',
         );
         
+        if ($this->exists) {
+            $rules['field'] = 'max:255';
+        }
+        
         return validator($data, $rules);
     }
     
