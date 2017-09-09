@@ -67,7 +67,7 @@ class ShakeModel extends \Eloquent {
      * @return array
      */
     public function getAjaxFields() {
-        return $this->ajax_files || [];
+        return $this->ajax_files ? $this->ajax_files : [];
     }
     
     /**
