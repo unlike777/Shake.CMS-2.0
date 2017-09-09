@@ -22,6 +22,7 @@ class ModuleServiceProvider extends ServiceProvider
         foreach (config('modules') as $module_name => $module) {
             $this->addRoutes($module_name);
             $this->addViews($module_name);
+            $this->addMigrations($module_name);
         }
     }
 
@@ -52,5 +53,9 @@ class ModuleServiceProvider extends ServiceProvider
     
     public function addViews($module_name) {
         View::addNamespace($module_name, module_path($module_name, 'views'));
+    }
+
+    public function addMigrations($module_name) {
+        $this->loadMigrationsFrom(module_path($module_name, 'migrations'));
     }
 }
