@@ -281,4 +281,15 @@ class ShakeModel extends \Eloquent {
         }
     }
 
+    public function notice($words_count = 20) {
+        $string = explode(' ', strip_tags($this->content));
+        $src_count = count($string);
+        $string = array_slice($string, 0, $words_count);
+        return implode(' ', $string).($src_count > count($string) ? '...' : '');
+    }
+
+    public function url() {
+        return '#';
+    }
+
 }
