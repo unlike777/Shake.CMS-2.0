@@ -39,7 +39,7 @@
 				@if ($model->uniqueFields()->count())
 					@foreach($model->uniqueFields()->get() as $field)
 						
-						@php( $changed_item = ( isset($field_id) && ($field->id == $field_id) ) )
+						@php $changed_item = ( isset($field_id) && ($field->id == $field_id) ); @endphp
 						
 						{{ Form::model($field, ['class' => $changed_item ? 'ufields__form--changed' : '']) }}
 						

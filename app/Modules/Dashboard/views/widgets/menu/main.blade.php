@@ -1,7 +1,7 @@
 <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav side-nav">
         
-        @php($i = 1)
+        @php $i = 1; @endphp
         
         @foreach ($menu as $num => $group)
             @if ($num > 0)
@@ -9,7 +9,7 @@
             @endif
             @if (!empty($group['group']))
                 <li class="nav-header nav-header{{ $i }}">{{ $group['group'] }}</li>
-                @php($i++)
+                @php $i++; @endphp
             @endif
             @foreach($group['items'] as $item)
                 @if ($item['active'])

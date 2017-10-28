@@ -22,7 +22,7 @@
 
     @elseif ($field['type'] == 'date')
 
-        @php ($format = isset($field['format']) ? $field['format'] : 'Y-m-d H:i:S')
+        @php $format = isset($field['format']) ? $field['format'] : 'Y-m-d H:i:S'; @endphp
 
         <div class="form-group">
             <label class="col-md-3 control-label">{{ $field['title'] }}</label>

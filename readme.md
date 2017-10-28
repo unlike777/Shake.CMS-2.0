@@ -1,6 +1,6 @@
 ##Shake.CMS 2.0 Copyright 2017
 
-###Admin dashboard kit base on laravel 5.4
+###Admin dashboard kit base on laravel 5.5
 
 admin access  
 login: test@test.ru  
