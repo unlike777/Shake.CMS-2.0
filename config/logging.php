@@ -47,6 +47,7 @@ return [
         
         'daily' => [
             'driver' => 'daily',
+            'tap' => [\App\Shake\Laravel\Logging\CustomizeFormatter::class],
             'path' => storage_path('logs/laravel.log'),
             'level' => 'debug',
             'days' => 10,
