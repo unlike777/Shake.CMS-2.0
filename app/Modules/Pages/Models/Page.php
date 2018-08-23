@@ -83,17 +83,19 @@ class Page extends ShakeModel
     public static function boot() {
         parent::boot();
         
+        //для сортировки
         static::creating(function($obj) {
             $pos = self::max('position') + 1;
             $obj->position = $pos;
         });
-
+        
         static::saving(function($obj) {
             if (empty($obj->slug)) {
                 $obj->slug = str_slug($obj->title);
             }
         });
         
+        //если удаляется страница, то удаляем под страницы
         static::deleting(function($obj) {
             $obj->pages->map(function($item) {
                 $item->delete();

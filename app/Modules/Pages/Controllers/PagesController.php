@@ -18,6 +18,7 @@ class PagesController extends Controller {
     }
 
     public function pages($slug) {
+        
         $item = Page::where('slug', '=', $slug)->publ()->where('link', '=', '')->firstOrFail();
 
         SEO::set($item);

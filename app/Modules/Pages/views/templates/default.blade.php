@@ -2,6 +2,10 @@
 
 @section('content')
 
-<h1>Станартная</h1>
+<h1>Шаблон Станартный - {{ $item->title }}</h1>
+    
+<div>
+    {!! $item->content !!}
+</div>
     
 @endsection
