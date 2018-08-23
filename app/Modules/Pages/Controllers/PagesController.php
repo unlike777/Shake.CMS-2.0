@@ -19,10 +19,6 @@ class PagesController extends Controller {
 
     public function pages($slug) {
         
-        $qwe = 0;
-        $qwe->qwe = 123;
-        
-//        \Log::error(new \Exception('ошибка ошибка ошибка'));
         $item = Page::where('slug', '=', $slug)->publ()->where('link', '=', '')->firstOrFail();
         
         SEO::set($item);
