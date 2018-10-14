@@ -1,15 +1,15 @@
 ##Shake.CMS 2.0 Copyright 2017
 
-###Admin dashboard kit base on laravel 5.5
+###Admin dashboard kit base on laravel 5.6
 
-admin access  
+Admin access  
 login: test@test.ru  
 password: admins 
 
 ###Установка
 
 1. git clone https://github.com/unlike777/Shake.CMS-2.0.git .
-2. composer update
+2. composer install
 3. настроить конфиг для БД
 4. php artisan migrate
 5. php artisan db:seed (тестовые данные)
