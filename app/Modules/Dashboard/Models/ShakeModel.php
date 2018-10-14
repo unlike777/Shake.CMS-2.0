@@ -31,16 +31,21 @@ class ShakeModel extends \Eloquent {
      * @var array
      */
     static protected $columns = [];
-
-    public function __construct(array $attributes = []) {
-
-        //для поля сортировки
-        $fields = $this->getFillable();
-        if (in_array('sort', $fields)) {
-            $this->sort = static::max('sort') + 10;
+    
+    public function getAttribute($key) {
+        
+        if ( ($key == 'sort') && !$this->exists ) {
+            $fields = $this->getFillable();
+            if (in_array('sort', $fields)) {
+                try {
+                    $this->sort = static::max('sort') + 10;
+                } catch (\Exception $e) {
+    //                \Log::error($e);
+                }
+            }
         }
-
-        parent::__construct($attributes);
+        
+        return parent::getAttribute($key);
     }
     
     /**
