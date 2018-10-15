@@ -18,6 +18,18 @@ PS
 + чтобы создать или сбросить только страницы php artisan db:seed --class=PagesSeeder
 + чтобы создать или сбросить только пользователей php artisan db:seed --class=UsersSeeder
 
+###Модули
+
+Модули храняться в папке **App\Modules**  
+  
+Для создания модуля нужно прописать  
+php artisan modules:make {ModuleName} - например **MyModule** - эта команда добавить структуру папок в директорию App\Modules  
+  
+Для создание миграции в модуле используется следующая команда  
+php artisan modules:migrate {ModuleName} [дальше параметры php artisan make:migration]  
+  
+Для подключения модуля в систему нужно добавить его в конфиг **/config/modules.php**  
+  
 ###Описание
 
 Набор готовых классов для реализации админки на laravel  
