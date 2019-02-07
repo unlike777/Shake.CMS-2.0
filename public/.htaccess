@@ -2,22 +2,28 @@
     <IfModule mod_negotiation.c>
         Options -MultiViews
     </IfModule>
-
+    
+    <FilesMatch "\.(?i:gif|jpe?g|png|ico|css|less|js|swf)$">
+        <IfModule mod_headers.c>
+            Header set Cache-Control "max-age=31536000, public, must-revalidate"
+        </IfModule>
+    </FilesMatch>
+    
     #RewriteCond %{HTTP_HOST} ^www.yourdomain.ru$ [NC]
     #RewriteRule ^(.*)$ http://yourdomain.ru/$1 [R=301,L]
-    
+        
     #RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP/
     #RewriteRule ^index\.php$ http://yourdomain.ru/ [R=301,L]
-
+    
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)/$ /$1 [L,R=301]
-
+    
     # Handle Front Controller...
     #RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
-
+    
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
