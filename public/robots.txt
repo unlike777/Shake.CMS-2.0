@@ -1,6 +1,5 @@
 User-Agent: *
-Disallow: /assets/
-Disallow: /css_js/
+Disallow: /?
 
 Host: example.ru
 Sitemap: http://example.ru/sitemap.xml
