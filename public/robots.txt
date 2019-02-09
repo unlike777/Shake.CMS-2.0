@@ -1,5 +1,5 @@
 User-Agent: *
-Allow: /*page
+Allow: /*?page=
 Disallow: */*?
 
 Clean-Param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&utm_nooverride&utm_expid&gclid&_openstat&yclid&gsaid&_gs_rmark&_gs_ref&_gs_cttl /
