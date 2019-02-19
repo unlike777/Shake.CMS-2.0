@@ -25,7 +25,7 @@ function uncache($url) {
     
     $pref = 'not_found';
     if(file_exists($full_path)){
-        $pref = filemtime($full_path);
+        $pref = 'uncache='.filemtime($full_path);
     }
     
     return $url . '?' . $pref;
