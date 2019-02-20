@@ -7,27 +7,29 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 	// For complete reference see:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
-
+	
+	config.extraPlugins = 'autogrow,justify,colorbutton';
+	
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [
 
 		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
-		{ name: 'styles' },
-		{ name: 'forms' },
-		{ name: 'others' },
-		{ name: 'clipboard',   groups: [ 'clipboard' ] },
-		{ name: 'editing',     groups: [ 'find', 'selection' ] },
+		{ name: 'styles'},
+		{ name: 'colors' },
+		{ name: 'paragraph',   groups: [ 'list', /*'indent',*/ 'blocks', 'align', 'bidi', 'justify' ] },
 		{ name: 'links' },
 		{ name: 'insert' },
 		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
-		{ name: 'colors' },
-		{ name: 'tools' }
+		{ name: 'forms' },
+		{ name: 'others' },
+		{ name: 'clipboard',   groups: [ 'clipboard' ] },
+		{ name: 'editing',     groups: [ 'find', 'selection'] },
+		{ name: 'tools' },
 	];
 	
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
-	config.removeButtons = 'Underline,Subscript,Superscript,Cut,Copy,Paste,SpecialChar';
+	config.removeButtons = 'Underline,Subscript,Superscript,Cut,Copy,Paste,SpecialChar,PasteFromWord';
 	
 	// Set the most common block elements.
 	config.format_tags = 'p;h1;h2;h3;pre';
@@ -36,6 +38,4 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 
 	config.filebrowserBrowseUrl = '/elfinder/ckeditor';
-
-	config.extraPlugins = 'autogrow';
 };
