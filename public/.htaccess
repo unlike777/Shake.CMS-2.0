@@ -3,7 +3,7 @@
         Options -MultiViews
     </IfModule>
     
-    <FilesMatch "\.(?i:gif|jpe?g|png|ico|css|less|js|swf)$">
+    <FilesMatch "\.(?i:gif|jpe?g|png|webp|ico|css|less|js|swf)$">
         <IfModule mod_headers.c>
             Header set Cache-Control "max-age=31536000, public, must-revalidate"
         </IfModule>
