@@ -18,6 +18,8 @@ class Resizer {
 	
 	private static $max_resolution = 2000; //максимальное разрешение (иначе нехватка памяти)
 	
+	private $use_webp = false;
+	
 	private $img = '';
 	
 	public function __construct() {
@@ -93,11 +95,11 @@ class Resizer {
 			$filename = $this->resize_prefix().basename($this->img);
 			$from_path = $this->public_path().$this->cache_path();
 			
-			$full = $from_path.'/*/'.$filename;
+			$full = $from_path.'/*/'.$filename.'*';
 			$arr = glob($full);
 			$arr = ($arr === false) ? array() : $arr;
 			
-			$full = $from_path.'/'.$filename;
+			$full = $from_path.'/'.$filename.'*';
 			$arr2 = glob($full);
 			$arr2 = ($arr2 === false) ? array() : $arr2;
 			
@@ -205,7 +207,11 @@ class Resizer {
 		//именно такой порядок нужен для быстрого удаления кеша конкретной картинки
 		$dir = $this->cache_path().'/'.$width.'x'.$height.'_'.$scale_type.'_'.str_replace('#', '', $bg);
 		$resize_file_name = $dir.'/'.$pref.substr(strrchr($this->img, "/"), 1);
-
+        
+		if ($this->use_webp) {
+		    $resize_file_name .= '.webp';
+        }
+		
 		if (!file_exists($this->public_path() . $resize_file_name)) {
 			
 			$img = Image::make($this->full_path());
